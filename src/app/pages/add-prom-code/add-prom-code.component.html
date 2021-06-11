@@ -1,0 +1,66 @@
+<ng-container class="editAccount-dialog">
+    <p class="dialog-title">Agregar nuevo cupón</p>
+    <hr>
+    <div class="dialog-form">
+        <div class="dialog-name">
+            <p>NOMBRE DEL CUPÓN</p>
+            <mat-form-field class="user-name" appearance="outline">
+                <mat-label>Nombre del cupón</mat-label>
+
+                <mat-label></mat-label>
+                <input type="text" matInput placeholder="Nombre del cupón">
+            </mat-form-field>
+        </div>
+        <div class="dialog-Description">
+            <p>DESCRIPCIÓN DEL CUPÓN </p>
+            <mat-form-field class="user-lastName" appearance="outline">
+                <mat-label>Descripción del código</mat-label>
+
+                <mat-label></mat-label>
+                <input type="text" matInput placeholder="Descripción del código">
+            </mat-form-field>
+        </div>
+        <div class="dialog-cupon">
+            <p>CÓDIGO DE CUPÓN </p>
+            <mat-form-field class="user-mail" appearance="outline">
+                <mat-label>Código de cupón</mat-label>
+                <mat-label></mat-label>
+                <input type="text" matInput placeholder="Código de cupón">
+            </mat-form-field>
+        </div>
+        <div class="dialog-typeAccount">
+            <p>FECHA DE EXPIRACIÓN</p>
+            <mat-form-field class="user-account" appearance="outline">
+                <mat-label>Fecha de expiración</mat-label>
+                <mat-label></mat-label>
+                <input type="text" matInput placeholder="Fecha de expiración">
+            </mat-form-field>
+        </div>
+        <div class="dialog-typeAccount">
+            <p>NÚMERO MÁXIMO DE USOS EN TOTAL</p>
+            <mat-form-field class="user-account" appearance="outline">
+                <mat-label>Numero máximo de usos</mat-label>
+                <mat-label></mat-label>
+                <input type="text" matInput placeholder="Número máximo de usos">
+            </mat-form-field>
+        </div>
+        <div class="dialog-typeAccount">
+            <p>TIPO DE USO</p>
+            <mat-form-field class="user-account" appearance="outline">
+                <mat-select [(value)]="SelectedCodeUse">
+                    <mat-option [value]="option.value" *ngFor="let option of CodeUse">{{ option.viewValue }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="dialog-slideToggle">
+            Activo
+            <mat-slide-toggle></mat-slide-toggle>
+        </div>
+    </div>
+
+    <div class="user-buttons">
+        <button mat-raised-button class="save-button">Guardar</button>
+        <button mat-raised-button class="cancel-button" mat-dialog-close>Cancelar</button>
+
+    </div>
+</ng-container>

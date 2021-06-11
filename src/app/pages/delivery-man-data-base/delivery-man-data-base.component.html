@@ -1,0 +1,262 @@
+<ng-container>
+    <div class="header-container">
+        <div class="user-container" routerLink="/Pages/DeliveryMan">
+            <mat-icon class="align-middle mb-1">keyboard_arrow_left</mat-icon>
+            <span class="user-title mt-5">Informacion repartidor </span>
+        </div>
+
+        <div class="ADDSEARCH">
+            <mat-form-field appearance="outline" class="field-input-user">
+                <input matInput placeholder="Buscar usuarios" class="field-input-user" #input>
+                <mat-icon matPrefix style="color: #666666;" class="input">search</mat-icon>
+            </mat-form-field>
+        </div>
+    </div>
+    <mat-tab-group animationDuration="0ms">
+        <mat-tab label="Datos personales">
+            <div class="row" id="div1">
+                <form class="row" [formGroup]="domiDataForm" (ngSubmit)="UpdateDomiById() ">
+                    <div class="form-group col-lg-3 col-md-6 col-sm-12 mt-4 ">
+                        <p>FOTO DEL USUARIO</p>
+                        <img [src]="domiSeleccionado?.person?.photo" class="rounded_all " width="80px " height="80px " alt=" ">
+                    </div>
+                    <div class="form-group col-lg-3 col-md-6 col-sm-12 mt-4 ">
+                        <p>NOMBRE</p>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Nombre</mat-label>
+                            <input formControlName="first_name" required matInput placeholder="Nombre ">
+                        </mat-form-field>
+                    </div>
+                    <div class="form-group col-lg-3 col-md-6 col-sm-12 mt-4 ">
+                        <p>APELLIDO</p>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Apellido</mat-label>
+                            <input formControlName="last_name" required matInput placeholder="Apellido ">
+                        </mat-form-field>
+                    </div>
+                    <div class="form-group col-lg-3 col-md-6 col-sm-12 mt-4 ">
+                        <p>FECHA DE NACIMIENTO </p>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Fecha de nacimiento</mat-label>
+                            <input formControlName="birthday" required matInput placeholder="Fecha de nacimiento ">
+                        </mat-form-field>
+                    </div>
+                    <div class="form-group col-lg-3 col-md-6 col-sm-12 mt-4 ">
+                        <p> CORREO ELECTRONICO </p>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Correo electronico</mat-label>
+                            <input formControlName="email" required required matInput placeholder="Correo Electronico ">
+                        </mat-form-field>
+                    </div>
+                    <div class="form-group col-lg-3 col-md-6 col-sm-12 mt-4 ">
+                        <p> UBICACION </p>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Ciudad </mat-label>
+                            <input formControlName="city" placeholder="Ciudad" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="form-group col-lg-3 col-md-6 col-sm-12 mt-4 ">
+                        <p> CONTACTO </p>
+                        <mat-form-field appearance="outline">
+                            <input formControlName="phone" placeholder="Telefono Celular" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="form-group col-lg-3 col-md-6 col-sm-12 mt-4 ">
+                        <p>CODIGO DE REFERIDO</p>
+                        <mat-form-field appearance="outline">
+                            <input formControlName="refer_code" placeholder="Codigo de referido" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="form-group col-lg-3 col-md-6 col-sm-12 mt-4 ">
+                        <p>TIPO DE VEHICULO</p>
+                        <mat-form-field appearance="outline" class="mr-2 docV ">
+                            <input formControlName="vehicle_type" required matInput placeholder="Tipo de vehiculo" required>
+                        </mat-form-field>
+                    </div>
+                    <div class="form-group col-lg-3 col-md-6 col-sm-12 mt-4 ">
+                        <p>PLACA</p>
+                        <mat-form-field appearance="outline" class="mr-2 docV ">
+                            <input formControlName="vehicle_plate" required matInput placeholder="Placa ">
+                        </mat-form-field>
+                    </div>
+                    <div class="form-group col-lg-3 col-md-6 col-sm-12 mt-4 ">
+                        <p> FECHA DE EXPEDICION SOAT</p>
+                        <mat-form-field appearance="outline" class="docV ">
+                            <input matInput formControlName="soat_expedition_date" placeholder="Fecha de expedicion del SOAT">
+                        </mat-form-field>
+                    </div>
+                    <div class="form-group col-lg-3 col-md-6 col-sm-12 mt-4 ">
+                        <p>SOAT FECHA DE VENCIMIENTO </p>
+                        <mat-form-field appearance="outline" class="docV ">
+                            <input matInput formControlName="soat_exp_date" required placeholder="Fecha de vencimiendo del SOAT">
+                        </mat-form-field>
+                    </div>
+                    <div class="form-group col-lg-3 col-md-6 col-sm-12 mt-4">
+                        <p>NUMERO DE DOCUMENTO DE IDENTIDAD</p>
+                        <mat-form-field appearance="outline">
+                            <input formControlName="doc_number" required placeholder="Numero de documento " matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="form-group col-lg-3 col-md-6 col-sm-12 mt-4 ">
+                        <p> EXPEDICION DEl DOCUMENTO DE IDENTIDAD </p>
+                        <mat-form-field appearance="outline">
+                            <input formControlName="exp_date" required matInput placeholder="Fecha de expedicion del documento de identidad">
+                        </mat-form-field>
+                    </div>
+                    <div class="form-group col-lg-3 col-md-6 col-sm-12 mt-4 ">
+                        <p>LICENCIA DE CONDUCIR</p>
+                        <mat-form-field appearance="outline">
+                            <input formControlName="license_number" required placeholder="Licencia de conducir " matInput>
+                        </mat-form-field>
+
+                    </div>
+                    <div class="form-group col-lg-3 col-md-6 col-sm-12 mt-4 ">
+                        <p>VENCIMIENTO DE LICENCIA DE CONDUCCION</p>
+                        <mat-form-field appearance="outline">
+                            <input formControlName="license_exp_date" required placeholder="Fecha de vencimiento de licencia de conducir " matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="form-group col-12 third-row mb-1 ">
+                        <button mat-raised-button type="submit " class="save-button ">Actualizar</button>
+                        <button mat-raised-button class="cancel-button " routerLink='/Pages/DeliveryMan'> Cancelar</button>
+
+                    </div>
+                </form>
+            </div>
+
+        </mat-tab>
+        <mat-tab label="Documentacion Personal ">
+            <div class="row ">
+                <div class="form-group col-12 mb-2 mt-4 ">
+                    <mat-card class="d-flex ">
+                        <span class="description d-flex ">
+                            <img src="../../../assets/image.png " height="40px " alt=" ">
+                           <span class="des ">
+                            <p style="margin: 0; "> DOCUMENTO DE IDENTIDAD FRENTE</p>
+                            <p> Cedula {{ domiSeleccionado?.first_name | lowercase}} {{ domiSeleccionado?.last_name | lowercase}} </p>
+                           </span>
+                        </span>
+                        <button mat-raised-button class="download-button ">
+                            <a _blank class="download " [href]="domiSeleccionado?.domidata?.doc_front "> Descargar </a>
+                           </button>
+                    </mat-card>
+                </div>
+                <hr>
+                <div class="form-group col-12 ">
+                    <mat-card class="d-flex ">
+                        <span class="description d-flex ">
+                            <img src="../../../assets/image.png " height="40px " alt=" ">
+                           <span class="des ">
+                            <p style="margin: 0; "> DOCUMENTO DE IDENTIDAD RESPALDO</p>
+                            <p> Cedula {{ domiSeleccionado?.first_name | lowercase}} {{ domiSeleccionado?.last_name | lowercase}} </p>
+                           </span>
+                        </span>
+                        <button mat-raised-button class="download-button ">
+                            <a _blank class="download " [href]="domiSeleccionado?.domidata?.doc_back "> Descargar </a>
+                           </button>
+                    </mat-card>
+                </div>
+                <strong>
+                    <hr class="mt-5 strong ">
+                </strong>
+                <div class="form-group col-12 mb-2 mt-2 ">
+                    <mat-card class="d-flex ">
+                        <span class="description d-flex ">
+                            <img src="../../../assets/image.png " height="40px " alt=" ">
+                           <span class="des ">
+                            <p style="margin: 0; ">LICENCIA DE CONDUCIR FRENTE</p>
+                            <p> Licencia {{ domiSeleccionado?.first_name | lowercase}} {{ domiSeleccionado?.last_name | lowercase}} </p>
+                           </span>
+                        </span>
+                        <button mat-raised-button class="download-button ">
+                            <a _blank class="download " [href]="domiSeleccionado?.domidata?.license_front "> Descargar </a>
+                           </button>
+                    </mat-card>
+                </div>
+                <hr>
+                <div class="form-group col-12 ">
+                    <mat-card class="d-flex ">
+                        <span class="description d-flex ">
+                            <img src="../../../assets/image.png " height="40px " alt=" ">
+                           <span class="des ">
+                            <p style="margin: 0; ">LICENCIA DE CONDUCIR RESPALDO</p>
+                            <p> Licencia {{ domiSeleccionado?.first_name | lowercase}} {{ domiSeleccionado?.last_name | lowercase}} </p>
+                           </span>
+                        </span>
+                        <button mat-raised-button class="download-button ">
+                            <a _blank class="download " [href]="domiSeleccionado?.domidata?.license_back "> Descargar </a>
+                           </button>
+                    </mat-card>
+                </div>
+            </div>
+        </mat-tab>
+        <mat-tab label="Documentacion Vehicular ">
+            <div class="row ">
+                <div class="form-group col-12 mt-4 ">
+                    <mat-card class="d-flex ">
+                        <span class="description d-flex ">
+                            <img src="../../../assets/image.png " height="40px " alt=" ">
+                           <span class="des ">
+                            <p style="margin: 0; "> VEHICULO </p>
+                            <p> Vehiculo de  {{ domiSeleccionado?.first_name | lowercase}} {{ domiSeleccionado?.last_name | lowercase}} </p>
+                           </span>
+                        </span>
+                        <button mat-raised-button class="download-button ">
+                            <a _blank class="download " [href]="domiSeleccionado?.domidata?.vehicle_photo "> Descargar </a>
+                           </button>
+                    </mat-card>
+                </div>
+                <strong>
+                    <hr class="mt-5 strong ">
+                </strong>
+                <div class="form-group col-12 mt-4 ">
+                    <mat-card class="d-flex ">
+                        <span class="description d-flex ">
+                            <img src="../../../assets/image.png " height="40px " alt=" ">
+                           <span class="des ">
+                            <p style="margin: 0; ">SOAT</p>
+                            <p> SOAT de {{ domiSeleccionado?.first_name | lowercase}} {{ domiSeleccionado?.last_name | lowercase}} </p>
+                           </span>
+                        </span>
+                        <button mat-raised-button class="download-button ">
+                            <a _blank class="download " [href]="domiSeleccionado?.domidata?.soat_doc "> Descargar </a>
+                           </button>
+                    </mat-card>
+                </div>
+                <strong>
+                    <hr class="mt-5 strong ">
+                </strong>
+
+                <div class="form-group col-12 mb-2 mt-4 ">
+                    <mat-card class="d-flex ">
+                        <span class="description d-flex ">
+                            <img src="../../../assets/image.png " height="40px " alt=" ">
+                           <span class="des ">
+                            <p style="margin: 0; ">TARJETA DE PROPIEDAD FRENTE</p>
+                            <p> Tarjeta de propiedad de {{ domiSeleccionado?.first_name | lowercase}} {{ domiSeleccionado?.last_name | lowercase}} </p>
+                           </span>
+                        </span>
+                        <button mat-raised-button class="download-button ">
+                            <a _blank class="download " [href]="domiSeleccionado?.domidata?.property_doc_front "> Descargar </a>
+                           </button>
+                    </mat-card>
+                </div>
+                <hr>
+                <div class="form-group col-12 ">
+                    <mat-card class="d-flex ">
+                        <span class="description d-flex ">
+                            <img src="../../../assets/image.png " height="40px " alt=" ">
+                           <span class="des ">
+                            <p style="margin: 0; ">TARJETA DE PROPIEDAD RESPALDO</p>
+                            <p> Tarjeta de propiedad de {{ domiSeleccionado?.first_name | lowercase}} {{ domiSeleccionado?.last_name | lowercase}} </p>
+                           </span>
+                        </span>
+                        <button mat-raised-button class="download-button ">
+                            <a _blank class="download " [href]="domiSeleccionado?.domidata?.property_doc_back "> Descargar </a>
+                           </button>
+                    </mat-card>
+                </div>
+            </div>
+        </mat-tab>
+    </mat-tab-group>
+</ng-container>

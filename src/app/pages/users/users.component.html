@@ -1,0 +1,128 @@
+<ng-container>
+    <div class="header-container">
+        <div class="user-container ">
+            <span class="user-title ">Usuarios </span>
+        </div>
+        <div class="ADDSEARCH mt-1">
+
+            <mat-form-field appearance="outline" class="field-input-user">
+                <input matInput placeholder="Buscar usuarios" #SearchTerm (keyup)="search(SearchTerm.value)" class="field-input-user" #input>
+                <mat-icon matPrefix style="color: #666666;" class="input">search</mat-icon>
+            </mat-form-field>
+        </div>
+    </div>
+
+
+    <mat-tab-group animationDuration="0ms" class="mt-1 mx-3 ">
+        <mat-tab label="Cargando" class=" fadeIn userCharge mt-2 mb-2 fast" *ngIf="cargando">
+            <div class="alert alert-info text-center animated fadeIn fast" role="alert">
+                <h4 class="alert-heading">Cargando</h4>
+                <i class="fa fa-spin fa-refresh fa-2x"></i>
+                <p class="mb-0">Porfavor Espere...</p>
+            </div>
+        </mat-tab>
+        <mat-tab label="Bases de datos  ({{usuarios.length}}) ">
+
+
+            <table class="table table-hover">
+                <thead>
+                    <tr class="text-center">
+                        <th class="align-middle"> PAGINA: {{pageNumber}}</th>
+                        <th class="align-middle my-auto">ID</th>
+                        <th class="align-middle">FOTO</th>
+                        <th class="align-middle">NOMBRE</th>
+                        <th class="align-middle">APELLIDO</th>
+                        <th class="align-middle">SALDO</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr *ngFor="let usuario of usuarios" class="text-center" style="height: 77px !important;">
+                        <td class="align-middle">
+                            <div class="form-checkvtex-center">
+                                <input class="form-check-input text-center" type="checkbox" value="true" id="flexCheckDefault">
+                            </div>
+                        </td>
+                        <td class="align-middle" style="height: 77px !important;">{{usuario.id}}</td>
+                        <td class="align-middle" style="height: 77px !important;">
+                            <img [src]="usuario.photo" alt="">
+                            <img *ngIf="!usuario.photo" class="img-fluid " src="../../../assets/default-user.jpg" alt="">
+                        </td>
+                        <td class="align-middle" style="height: 77px !important;">{{usuario.first_name}}</td>
+                        <td class="align-middle" style="height: 77px !important;">{{usuario.last_name}}</td>
+                        <td class="align-middle" style="height: 77px !important;">$ {{usuario.total |number:'1.0-0'}} </td>
+
+                        <td class="dropdown align-middle">
+                            <span>
+                                <a (click)="BlockUser(usuario)">
+                                    <i class="fas fa-unlock"></i>
+                                </a>
+                            </span>
+
+                        </td>
+
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+            <div class="paginator m-3">
+                <button mat-raised-button class="cancel-button mr-2" (click)="pagination(-1)">Anterior</button>
+                <button mat-raised-button (click)="pagination(1)" class="save-button ml-2 ">Siguiente</button>
+
+            </div>
+        </mat-tab>
+        <mat-tab label="Bloqueados ({{lockedUsers.length}})">
+            <table class="table table-hover">
+                <thead>
+                    <tr class="text-center">
+                        <th class="align-middle">PAGINA: {{pageNumber}}</th>
+                        <th class="align-middle my-auto">ID</th>
+                        <th class="align-middle">FOTO</th>
+                        <th class="align-middle">NOMBRE</th>
+                        <th class="align-middle">APELLIDO</th>
+                        <th class="align-middle">SALDO</th>
+                        <th> </th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr *ngFor="let lockedUser of lockedUsers" class="text-center" style="height: 77px !important;">
+                        <td class="align-middle">
+                            <div class="form-checkvtex-center">
+                                <input class="form-check-input text-center" type="checkbox" value="true" id="flexCheckDefault">
+                            </div>
+                        </td>
+                        <td class="align-middle" style="height: 77px !important;">{{lockedUser.id}}</td>
+                        <td class="align-middle" style="height: 77px !important;">
+                            <img [src]="lockedUser.photo" alt="">
+                            <img *ngIf="!lockedUser.photo" class="img-fluid " src="../../../assets/default-user.jpg" alt="">
+                        </td>
+                        <td class="align-middle" style="height: 77px !important;">{{lockedUser.first_name}}</td>
+                        <td class="align-middle" style="height: 77px !important;">{{lockedUser.last_name}}</td>
+                        <td class="align-middle" style="height: 77px !important;"> {{lockedUser.total}} </td>
+                        <td class="dropdown align-middle">
+                            <a (click)="DisBlockUser(lockedUser)">
+                                <i class="fas fa-lock"></i>
+                            </a>
+
+                        </td>
+
+
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+            <div class="paginator m-3">
+                <button mat-raised-button class="cancel-button mr-2" (click)="pagination(-1)">Anterior</button>
+                <button mat-raised-button (click)="pagination(1)" class="save-button ml-2 ">Siguiente</button>
+
+            </div>
+        </mat-tab>
+    </mat-tab-group>
+
+</ng-container>

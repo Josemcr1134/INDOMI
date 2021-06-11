@@ -1,0 +1,44 @@
+<ng-container>
+    <div class="header-container">
+        <div class="user-container ">
+            <span class="user-title ">Preguntas frecuentes</span>
+        </div>
+
+    </div>
+    <mat-tab-group animationDuration="0ms" class="mt-1 mx-3 ">w
+        <mat-tab label="Variables">
+
+            <div class="row">
+                <div class="button-Name col-lg-4 col-md-8 col-sm-12">
+                    <h5 class="mb-4">NOMBRE DEL BOTON</h5>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Preguntas frecuentes</mat-label>
+                        <input matInput value="Preguntas frecuentes" placeholder="Preguntas frecuentes">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="button-Name col-lg-4 col-md-8 col-sm-12">
+                    <h5 class="mb-4">URL</h5>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Preguntas frecuentes</mat-label>
+                        <input type="url" [value]="parametersSelected?.frequently_url" matInput placeholder="Placeholder">
+                    </mat-form-field>
+                    <a target="_blank" class="url" [href]="parametersSelected?.frequently_url"> {{parametersSelected?.frequently_url}} </a>
+                </div>
+            </div>
+
+            <div class="row mt-1">
+
+                <div class="form-group col-12 third-row mb-1 mt-2 ">
+                    <button mat-raised-button type="submit " class="save-button ">Actualizar</button>
+                    <button mat-raised-button class="cancel-button " routerLink='/Pages/Help'> Cancelar</button>
+
+                </div>
+            </div>
+
+        </mat-tab>
+    </mat-tab-group>
+
+</ng-container>

@@ -1,0 +1,113 @@
+<ng-container>
+    <div class="header-container">
+        <div class="user-container ">
+            <span class="user-title ">Transacciones  </span>
+        </div>
+        <div class="ADDSEARCH">
+
+            <mat-form-field appearance="outline" class="field-input-user">
+                <input matInput placeholder="Buscar transactions" #searchTerm (keyup)="searchReferTransactions(searchTerm.value)" (keyup)="searchTransactions(searchTerm.value)" class="field-input-user" #input>
+                <mat-icon matPrefix style="color: #666666;" class="input">search</mat-icon>
+            </mat-form-field>
+        </div>
+    </div>
+    <mat-tab-group animationDuration="0ms" class="mt-1 mx-3 ">
+        <mat-tab label="Cargando" class=" fadeIn userCharge mt-2 mb-2 fast" *ngIf="cargando">
+            <div class="alert alert-info text-center animated fadeIn fast" role="alert">
+                <h4 class="alert-heading">Cargando</h4>
+                <i class="fa fa-spin fa-refresh fa-2x"></i>
+                <p class="mb-0">Porfavor Espere...</p>
+            </div>
+        </mat-tab>
+        <mat-tab label="Movimientos ({{transactions.length}})">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr class="text-center">
+                            <th class="align-middle">PÁGINA: {{pageNumber}}</th>
+                            <th class="align-middle my-auto">ID DE LA TRANSACCION</th>
+                            <th class="align-middle">DESCRIPCION</th>
+                            <th class="align-middle">NOMBRE</th>
+                            <th class="align-middle">APELLIDO</th>
+                            <th class="align-middle">SALDO</th>
+                            <th class="align-middle">FECHA</th>
+                            <th class="align-middle">ESTADO</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr *ngFor="let transaction of transactions" class="text-center" style="height: 77px !important;">
+                            <td class="align-middle">
+                                <div class="form-checkvtex-center">
+                                    <input class="form-check-input text-center" type="checkbox" value="true" id="flexCheckDefault">
+                                </div>
+                            </td>
+                            <td class="align-middle" style="height: 77px !important;">{{transaction.id}}</td>
+                            <td class="align-middle" style="height: 77px !important;">{{getDetail(transaction.detail)}}</td>
+                            <td class="align-middle" style="height: 77px !important;">{{transaction.user.first_name}}</td>
+                            <td class="align-middle" style="height: 77px !important;">{{transaction.user.last_name}}</td>
+                            <td class="align-middle" style="height: 77px !important;">${{transaction.total | number:'1.0-0'}}</td>
+                            <td class="align-middle" style="height: 77px !important;">{{transaction.timestamp |date:'medium'}}</td>
+                            <td class="align-middle" style="height: 77px !important;">{{getStatus(transaction.status)}}</td>
+
+
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+            </div>
+            <div class="paginator m-3">
+                <button mat-raised-button class="cancel-button mr-2" (click)="pagination(-1)">Anterior</button>
+                <button mat-raised-button (click)="pagination(1)" class="save-button ml-2 ">Siguiente</button>
+
+            </div>
+        </mat-tab>
+        <mat-tab label="Referidos ({{referTransactions.length}}) ">
+            <div class="table-responsive">
+                <table class="table table-hover ">
+                    <thead>
+                        <tr class="text-center ">
+                            <th class="align-middle">PAGINA: {{pageNumber}}</th>
+                            <th class="align-middle my-auto ">ID DE LA TRANSACCION</th>
+                            <th class="align-middle ">NOMBRE</th>
+                            <th class="align-middle ">APELLIDO</th>
+                            <th class="align-middle ">SALDO</th>
+                            <th class="align-middle ">FECHA</th>
+                            <th class="align-middle ">ESTADO</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr *ngFor="let referTransaction of referTransactions " class="text-center " style="height: 77px !important; ">
+                            <td class="align-middle">
+                                <div class="form-checkvtex-center">
+                                    <input class="form-check-input text-center" type="checkbox" value="true" id="flexCheckDefault">
+                                </div>
+                            </td>
+                            <td class="align-middle " style="height: 77px !important; ">{{referTransaction.id}}</td>
+                            <td class="align-middle " style="height: 77px !important; ">{{referTransaction.user.first_name}}</td>
+                            <td class="align-middle " style="height: 77px !important; ">{{referTransaction.user.last_name}}</td>
+                            <td class="align-middle " style="height: 77px !important; ">${{referTransaction.total | number:'1.0-0'}}</td>
+                            <td class="align-middle " style="height: 77px !important; ">{{referTransaction.timestamp |date:'medium'}}</td>
+                            <td class="align-middle " style="height: 77px !important; ">{{getStatus(referTransaction.status)}}</td>
+
+
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+            </div>
+            <div class="paginator m-3">
+                <button mat-raised-button class="cancel-button mr-2" (click)="pagination(-1)">Anterior</button>
+                <button mat-raised-button (click)="pagination(1)" class="save-button ml-2 ">Siguiente</button>
+
+            </div>
+        </mat-tab>
+
+    </mat-tab-group>
+
+</ng-container>

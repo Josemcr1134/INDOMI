@@ -1,0 +1,40 @@
+<div class="contenedor img-fluid ">
+    <div class="row ">
+        <div class="col ">
+            <div class="p-2 mx-auto" style=" max-width: 70%; height: 500px; ">
+
+                <form id="loginform" (ngSubmit)="login()" autocomplete="off" [formGroup]="loginform">
+                    <div class="mb-5 form-group d-grid gap-2 col-3 mx-auto img-fluid ">
+                        <img class="img-form" src="../../../assets/logo.png" alt="">
+                    </div>
+                    <div class=" mb-3 form-group d-grid  col-3 mx-auto ">
+                        <label class="label-form"> Usuario</label>
+                        <div class="input-group flex-nowrap">
+                            <input type="text" class="form-control rounded-pill" placeholder="pat@example.com" style="color:#9B9A9A;" formControlName="username" required>
+                        </div>
+                        <!--  <mat-form-field appearance="outline" class="login">
+                            <input matInput placeholder="pat@example.com" style="color:#9B9A9A;" formControlName="username" required>
+                            <mat-error class="m-1"> El Corrreo no es valido.</mat-error>
+                        </mat-form-field> -->
+                    </div>
+                    <div class="mb-3 form-group d-grid col-3 mx-auto ">
+                        <label class="label-form"> Contraseña</label>
+                        <input type="text" class="form-control rounded-pill" placeholder="contraseña" style="color:#9B9A9A;" formControlName="password" required>
+
+                        <!--  <mat-form-field appearance="outline" class="login">
+                            <input matInput placeholder="Placeholder" style="color:#9B9A9A;" [type]="hide ? 'password' : 'text'" formControlName="password" required>
+                            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                            </button>
+                            <mat-error>Constraseña Incorrecta</mat-error>
+                        </mat-form-field> -->
+                    </div>
+                    <div class="form-group d-grid gap-2  mx-auto ">
+                        <button type="submit" class="btn  text-center" [disabled]="loginform.invalid"><strong>Ingresar</strong></button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>

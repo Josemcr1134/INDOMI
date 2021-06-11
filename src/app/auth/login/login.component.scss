@@ -1,0 +1,126 @@
+.mat-form-field {
+    font-family: 'Manrope';
+    border-radius: 24px !important;
+}
+
+.form-group {
+    width: 300px;
+}
+
+.img-form {
+    max-width: 300px;
+    display: flex;
+    justify-self: center;
+    align-self: center;
+    margin-bottom: 1em;
+}
+
+.forgot-password {
+    color: #00884e;
+    font-size: 12px;
+}
+
+.btn {
+    background: #00BEDE;
+    border: 0;
+    outline: hidden;
+    color: white;
+    border-radius: 24px;
+    height: 42px;
+}
+
+.label-form {
+    color: #000000;
+    font-size: 14px;
+    padding-left: 15px;
+    font-weight: 400;
+}
+
+.row {
+    margin-top: 21vh;
+}
+
+label {
+    margin-bottom: 7px;
+}
+
+.img-form {
+    margin-bottom: 0px;
+}
+
+.mat-form-field-wrapper {
+    padding-bottom: 0 !important;
+}
+
+.form-group {
+    width: 300px;
+}
+
+.img-form {
+    max-width: 300px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    justify-self: center;
+    -ms-flex-item-align: center;
+    align-self: center;
+    margin-bottom: 1em;
+}
+
+.forgot-password {
+    color: #00BEDE;
+    font-size: 12px;
+}
+
+.btn {
+    background: #00BEDE;
+    border: 0;
+    outline: hidden;
+    color: white;
+    border-radius: 24px;
+    height: 42px;
+}
+
+.label-form {
+    color: #000000;
+    font-size: 14px;
+    padding-left: 15px;
+    font-weight: 400;
+}
+
+input {
+    border: 1px #EBEBEB;
+    color: white;
+    opacity: 1;
+}
+
+.row {
+    margin-top: 21vh;
+}
+
+label {
+    margin-bottom: 7px;
+    color: #EBEBEB;
+    font-size: 14px;
+    font-family: 'Manrope';
+}
+
+.img-form {
+    margin-bottom: 0px;
+}
+
+.mat-form-field-wrapper {
+    padding-bottom: 0 !important;
+}
+
+
+/*# sourceMappingURL=login.component.css.map */
+
+.mat-form-field-flex {
+    height: 50px !important;
+    border-radius: 24px !important;
+}
+
+.form-control {
+    height: 45px;
+}

@@ -1,0 +1,85 @@
+<ng-container>
+    <div class="header-container">
+        <div class="user-container ">
+            <span class="user-title ">Servicios Activos  </span>
+        </div>
+        <div class="ADDSEARCH">
+
+            <button mat-raised-button class="filtrar-button" (click)="openDialog()">
+                  Filtrar
+            </button>
+
+
+            <mat-form-field appearance="outline" class="field-input-user">
+                <input matInput placeholder="Buscar servicios..." class="field-input-user" #searchTerm (keyup)="searchActiveServices(searchTerm.value)">
+                <mat-icon matPrefix style="color: #666666;" class="input">search</mat-icon>
+            </mat-form-field>
+        </div>
+    </div>
+    <mat-tab-group animationDuration="0ms" class="mt-1 mx-3 ">
+        <mat-tab label="Cargando" class=" fadeIn userCharge mt-2 mb-2 fast" *ngIf="cargando">
+            <div class="alert alert-info text-center animated fadeIn fast" role="alert">
+                <h4 class="alert-heading">Cargando</h4>
+                <i class="fa fa-spin fa-refresh fa-2x"></i>
+                <p class="mb-0">Porfavor Espere...</p>
+            </div>
+        </mat-tab>
+        <mat-tab label="Listado de servicios">
+
+            <div class="table-responsive">
+                <table class="table table-hover table-responsive">
+                    <thead>
+                        <tr class="text-center">
+                            <th class="align-middle">PAGINA: {{pageNumber}}</th>
+                            <th class="align-middle">ID DEL SERVICIO</th>
+                            <th class="align-middle">DIRECCION 1</th>
+                            <th class="align-middle">DIRECCION 2</th>
+                            <th class="align-middle">PAGO</th>
+                            <th class="align-middle">VALOR</th>
+
+                            <th class="align-middle">REPARTIDOR</th>
+                            <th class="align-middle">FECHA <i class="fas fa-arrow-down"></i></th>
+                            <th class="align-middle">ESTADO</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr *ngFor="let activatedService of activatedServices" class="text-center" style="height: 77px !important;">
+
+                            <td class="align-middle" style="height: 77px !important;">
+                                <div class="form-checkvtex-center">
+                                    <input class="form-check-input text-center" type="checkbox" value="true" id="flexCheckDefault">
+                                </div>
+                            </td>
+                            <td class="align-middle" style="height: 77px !important;">{{activatedService.id}}</td>
+                            <td class="align-middle" style="height: 77px !important;">{{activatedService.way_points[0].address | slice:0:40 }}... </td>
+                            <td class="align-middle" style="height: 77px !important;">{{activatedService.way_points[1].address | slice:0:40}}... </td>
+                            <td class="align-middle" style="height: 77px !important;">{{getPayMethod(activatedService.pay_method)}}</td>
+                            <td class="align-middle" style="height: 77px !important;">{{activatedService.domi_tax |number:'1.0-0'}}</td>
+                            <td class="align-middle" style="height: 77px !important;">{{activatedService.user.first_name}} {{activatedService.user.last_name}}</td>
+                            <td class="align-middle" style="height: 77px !important;">{{activatedService.created_at | date:'medium'}} </td>
+                            <td class="align-middle" style="height: 77px !important;">{{getStatus(activatedService.service_status)}} </td>
+
+                            <td class="align-middle" style="height: 77px !important;">
+
+
+                        </tr>
+
+                    </tbody>
+
+
+                </table>
+                <div class="paginator m-3">
+                    <button mat-raised-button class="cancel-button mr-2" (click)="pagination(-1)">Anterior</button>
+                    <button mat-raised-button (click)="pagination(1)" class="save-button ml-2 ">Siguiente</button>
+
+                </div>
+
+            </div>
+
+
+        </mat-tab>
+    </mat-tab-group>
+
+</ng-container>

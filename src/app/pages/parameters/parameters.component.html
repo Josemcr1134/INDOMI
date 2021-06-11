@@ -1,0 +1,166 @@
+<ng-container>
+    <div class="header-container">
+        <div class="user-container ">
+            <span class="user-title ">Parametros</span>
+        </div>
+        <div class="ADDSEARCH">
+
+            <!-- <mat-form-field appearance="outline" class="field-input-user">
+                <input matInput (keyup)="applyFilter($event)" placeholder="Buscar usuarios" class="field-input-user" #input>
+                <mat-icon matPrefix style="color: #666666;" class="input">search</mat-icon>
+            </mat-form-field>  -->
+        </div>
+    </div>
+    <mat-tab-group animationDuration="0ms" class="mt-1 mx-3 ">
+        <mat-tab label="Cargando" *ngIf="cargando">
+            <div class="col-12 alert alert-info text-center animated fadeIn fast" role="alert">
+                <h4 class="alert-heading">Cargando</h4>
+                <i class="fa fa-spin fa-refresh fa-2x"></i>
+                <p class="mb-0">Porfavor Espere...</p>
+            </div>
+        </mat-tab>
+        <mat-tab label="Variables">
+            <form [formGroup]="parametersForm" (ngSubmit)="changeParametros()">
+                <div class="row mt-1">
+
+                    <div class="col-lg-4 col-md-6 col-sm-12 first-row">
+                        <p class>ID del parametro</p>
+                        <mat-form-field appearance="outline">
+                            <input formControlName="id" matInput placeholder="ID del parametro" required>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12 first-row">
+                        <p class>Tarifa de servicio a usuario</p>
+                        <mat-form-field appearance="outline">
+                            <input formControlName="user_tax_percent" required matInput placeholder="Tarifa de servicio a usuario">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12 first-row">
+                        <p class>Tarifa de servicio a domi</p>
+                        <mat-form-field appearance="outline">
+                            <input formControlName="domi_tax_percent" required matInput placeholder="Tarifa de servicio a domi">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12 second-row">
+                        <p class>Valor KM adicional</p>
+                        <mat-form-field appearance="outline">
+                            <input formControlName="km_value" type="number" required matInput placeholder="Valor KM adicional">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12 second-row">
+                        <p>Valor minimo del servicio</p>
+                        <mat-form-field appearance="outline">
+                            <input formControlName="min_service_value" required matInput placeholder="Valor minimo de servicio">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12 second-row">
+                        <p>Valor del boton de incremento</p>
+                        <mat-form-field appearance="outline">
+                            <input formControlName="service_inc_dec" required matInput placeholder="Valor del boton de incremento">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12 second-row">
+                        <p>Valor minimo de desembolso</p>
+                        <mat-form-field appearance="outline">
+                            <input formControlName="min_drawback_value" required matInput placeholder="Valor minimo de desembolso">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12 second-row">
+                        <p>Tiempo del servicio en espera por domicilio</p>
+                        <mat-form-field appearance="outline">
+                            <input formControlName="service_life_time" required matInput placeholder="Tiempo del servicio en espera por domicilio">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12 second-row">
+                        <p>Tiempo del servicio en espera de la oferta</p>
+                        <mat-form-field appearance="outline">
+                            <input formControlName="offer_life_time" required matInput placeholder="Tiempo del servicio en espera de la oferta">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12 second-row">
+                        <p>Valor por referido domi</p>
+                        <mat-form-field appearance="outline">
+                            <input matInput formControlName="refer_code_reward" required placeholder="Valor por referido domi">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12 second-row">
+                        <p>Porcentaje del valor del seguro</p>
+                        <mat-form-field appearance="outline">
+                            <input formControlName="insurance_value" required matInput placeholder="Porcentaje del valor del seguro">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12 second-row">
+                        <p>Url base compartir estado del servicio</p>
+                        <mat-form-field appearance="outline">
+                            <input formControlName="share_url" required matInput placeholder="Url base compartir estado del servicio">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12 second-row">
+                        <p>Url soporte</p>
+                        <mat-form-field appearance="outline">
+                            <input formControlName="pqr_url" required matInput placeholder="Url soporte">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12 second-row">
+                        <p>Url términos y condiciones</p>
+                        <mat-form-field appearance="outline">
+                            <input formControlName="terms_url" required matInput placeholder="Url términos y condiciones">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12 second-row">
+                        <p>Url Privacidad</p>
+                        <mat-form-field appearance="outline">
+                            <input formControlName="privacy_url" required matInput placeholder="Url Privacidad">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12 second-row">
+                        <p>Url preguntas frecuentes</p>
+                        <mat-form-field appearance="outline">
+                            <input formControlName="frequently_url" required matInput placeholder="Url preguntas frecuentes">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12 second-row">
+                        <p>Url Metodos de pago</p>
+                        <mat-form-field appearance="outline">
+                            <input formControlName="payment_url" required matInput placeholder=" Url Metodos de pago">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12 second-row">
+                        <p>Url Solucion de inconvenientes</p>
+                        <mat-form-field appearance="outline">
+                            <input formControlName="help_url" required matInput placeholder="Url Solucion de inconvenientes">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12 second-row">
+                        <p>Url sistema de recompensas</p>
+                        <mat-form-field appearance="outline">
+                            <input formControlName="reward_url" required matInput placeholder="Url sistema de recompensas">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12 second-row">
+                        <p>Url Acerca de indomi</p>
+                        <mat-form-field appearance="outline">
+                            <input formControlName="about_url" required matInput placeholder="Url Acerca de indomi">
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 col-sm-12 second-row">
+                        <p>Pais</p>
+                        <mat-form-field appearance="outline">
+                            <mat-select formControlName="country">
+                                <mat-option *ngFor="let country of countries" [value]="country.id" required selected>{{country.name}} </mat-option>
+
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-lg-12 col-md-6 col-sm-12 mb-3 second-row">
+                        <button [disabled]="parametersForm.invalid" mat-raised-button type="submit" class="save-button">Actualizar</button>
+                    </div>
+                </div>
+
+            </form>
+
+        </mat-tab>
+    </mat-tab-group>
+
+</ng-container>

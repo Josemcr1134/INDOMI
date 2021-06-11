@@ -1,0 +1,87 @@
+<ng-container>
+    <div class="header-container">
+        <div class="user-container">
+            <span class="user-title mt-5">Indicadores graficos </span>
+        </div>
+
+
+    </div>
+    <mat-tab-group animationDuration="0ms">
+        <mat-tab label="Reportes">
+
+            <div class="row date">
+                <div class="col-lg-4">
+                    <div class=" mt-1  animated fadeIn fast" role="alert">
+                        <h4 class="alert-heading mt-2">Asigna unas fechas de busqueda</h4>
+
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-8 col-sm-12">
+                    <div class="input-group">
+                        <input type="date" [(ngModel)]="timestamp_start" placeholder="Fecha 1" date-format="YYYY-MM-DD" aria-label="Date 1" class="form-control fecga">
+                        <input type="date" [(ngModel)]="timestamp_end" placeholder="Fecha 2" aria-label="Date 1" class="form-control">
+                        <button mat-raised-button class="save-button ml-2 " (click)="getReports()">Solicitar Indicadores</button>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class=" fadeIn userCharge mt-2 mb-2 fast" *ngIf="cargando">
+                <div class="alert alert-info text-center animated fadeIn fast" role="alert">
+                    <h4 class="alert-heading">Cargando</h4>
+                    <i class="fa fa-spin fa-refresh fa-2x"></i>
+                    <p class="mb-0">Porfavor Espere...</p>
+                </div>
+            </div>
+
+            <div class="VerMas">
+
+                <p class="dialog-title d-flex">
+                </p>
+
+                <hr>
+                <div class="dialog-form" *ngIf="buscado">
+                    <div class="dialog-name">
+                        <p class="direction_name">RECAUDO TOTAL DE SERVICIOS </p>
+                        <p class="direction_description">$ {{reports?.total_services}}
+                        </p>
+                    </div>
+                    <div class="dialog-Description ">
+                        <p class="direction_name">RECAUDO TOTAL DE COMISIONES </p>
+                        <p class="direction_description">$ {{reports?.total_comissions}}
+                        </p>
+                    </div>
+                    <div class="dialog-cupon">
+                        <p class="direction_name"> RECAUDO TOTAL DE SEGUROS </p>
+                        <p class="direction_description">$ {{reports?.total_insurance}}
+                        </p>
+
+                    </div>
+                    <div class="dialog-typeAccount">
+                        <p class="direction_name">CANT. SERVICIOS DE COMIDA</p>
+                        <p class="direction_description"> {{reports?.food_services}}
+
+                        </p>
+
+                    </div>
+                    <div class="dialog-typeAccount">
+                        <p class="direction_name">CANT. SERVICIOS DE PAQUETERIA </p>
+                        <p class="direction_description"> {{reports?.package_services}}
+                        </p>
+
+                    </div>
+                    <div class="dialog-slideToggle">
+                        <p class="direction_name">CANT. SERVICIOS DE DOCUMENTACION</p>
+                        <p class="direction_description"> {{reports?.doc_services}}
+
+                        </p>
+                    </div>
+                    <hr>
+                </div>
+
+            </div>
+        </mat-tab>
+
+    </mat-tab-group>
+</ng-container>
