@@ -56,7 +56,34 @@
                 </div>
             </div>
         </mat-tab>
+        <mat-tab label="PQR">
+            <table class="table text-center">
+                <thead class="align-middle">
+                    <tr>
+                        <th class="align-middle" scope="col"># DE SOLICITUD</th>
+                        <th scope="col">FECHA</th>
+                        <th scope="col">NOMBRE</th>
+                        <th scope="col">TIPO DE USUARIO</th>
+                        <th scope="col">MENSAJE</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody class="align-middle">
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>10/06/2021</td>
+                        <td>Oswaldo Cueto</td>
+                        <td>Domi</td>
 
+                        <td>{{message | slice:0:30}}....</td>
+                        <td>
+                            <button mat-raised-button class="save-button" (click)="openDialog()">Ver mas</button>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </mat-tab>
     </mat-tab-group>
 
 </ng-container>

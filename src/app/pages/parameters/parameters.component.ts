@@ -30,6 +30,7 @@ export class ParametersComponent implements OnInit {
       min_service_value:['', Validators.required],
       service_inc_dec:  ['', Validators.required],
       min_drawback_value:['', Validators.required],
+      max_debt_value:['', Validators.required],
       service_life_time: ['', Validators.required],
       offer_life_time:   ['', Validators.required],
       refer_code_reward: ['', Validators.required],
@@ -43,6 +44,7 @@ export class ParametersComponent implements OnInit {
       help_url:   ['', Validators.required],
       reward_url:   ['', Validators.required],
       about_url	:   ['', Validators.required],
+      drawback_url	:   ['', Validators.required],
       country:           ['', Validators.required],
       
     }    )
@@ -54,7 +56,7 @@ export class ParametersComponent implements OnInit {
           .subscribe( resp => {
             this.parametersSelected = resp
             this.parametersForm.setValue(this.parametersSelected)
-
+            console.log(resp)
             this.cargando = false
 
 

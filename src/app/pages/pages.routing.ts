@@ -22,7 +22,6 @@ import { IndicatorsComponent } from './indicators/indicators.component';
 const routes: Routes = [
     { path: 'Pages',
      component: PagesComponent,
-   /*  canActivate:[GuardsService], */
       children:[
          {path: '', component: UsersComponent, /*  canActivate:[GuardsService], */ },
          {path: 'Transactions', component: TransactionsComponent, /*  canActivate:[GuardsService], */ },
@@ -40,7 +39,6 @@ const routes: Routes = [
          {path: 'ReferSystems', component: ReferySystemComponent ,/*  canActivate:[GuardsService], */},
          {path: 'PromoCodes', component: PromoCodesComponent ,/*  canActivate:[GuardsService], */},
          {path: 'edit', component: EditUsersInformationComponent ,/*  canActivate:[GuardsService], */},
-         {path: '**', redirectTo:'', pathMatch:'full', canActivate:[GuardsService] },
 
      ]
      },

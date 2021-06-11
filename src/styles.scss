@@ -252,9 +252,7 @@ input:active {
 }
 
 .swal2-styled.swal2-cancel {
-    background: #0094E6 !important;
-    border: #0094E6;
-    outline: #0094E6 !important;
+    background-color: red !important;
 }
 
 .swal2-styled.swal2-confirm {
@@ -272,8 +270,9 @@ input:active {
 }
 
 .mat-dialog-container {
-    height: 650px !important;
+    height: auto !important;
     width: 556px;
+    max-height: 650px !important;
 }
 
 .userCharge {

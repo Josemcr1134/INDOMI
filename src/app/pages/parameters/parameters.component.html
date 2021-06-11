@@ -1,15 +1,9 @@
 <ng-container>
     <div class="header-container">
         <div class="user-container ">
-            <span class="user-title ">Parametros</span>
+            <span class="user-title ">Parámetros</span>
         </div>
-        <div class="ADDSEARCH">
 
-            <!-- <mat-form-field appearance="outline" class="field-input-user">
-                <input matInput (keyup)="applyFilter($event)" placeholder="Buscar usuarios" class="field-input-user" #input>
-                <mat-icon matPrefix style="color: #666666;" class="input">search</mat-icon>
-            </mat-form-field>  -->
-        </div>
     </div>
     <mat-tab-group animationDuration="0ms" class="mt-1 mx-3 ">
         <mat-tab label="Cargando" *ngIf="cargando">
@@ -24,9 +18,9 @@
                 <div class="row mt-1">
 
                     <div class="col-lg-4 col-md-6 col-sm-12 first-row">
-                        <p class>ID del parametro</p>
+                        <p class>ID del parámetro</p>
                         <mat-form-field appearance="outline">
-                            <input formControlName="id" matInput placeholder="ID del parametro" required>
+                            <input formControlName="id" matInput placeholder="ID del parámetro" required>
                         </mat-form-field>
                     </div>
                     <div class="col-lg-4 col-md-6 col-sm-12 first-row">
@@ -48,9 +42,9 @@
                         </mat-form-field>
                     </div>
                     <div class="col-lg-4 col-md-6 col-sm-12 second-row">
-                        <p>Valor minimo del servicio</p>
+                        <p>Valor mínimo del servicio</p>
                         <mat-form-field appearance="outline">
-                            <input formControlName="min_service_value" required matInput placeholder="Valor minimo de servicio">
+                            <input formControlName="min_service_value" required matInput placeholder="Valor mínimo de servicio">
                         </mat-form-field>
                     </div>
                     <div class="col-lg-4 col-md-6 col-sm-12 second-row">
@@ -60,9 +54,15 @@
                         </mat-form-field>
                     </div>
                     <div class="col-lg-4 col-md-6 col-sm-12 second-row">
-                        <p>Valor minimo de desembolso</p>
+                        <p>Valor mínimo de desembolso</p>
                         <mat-form-field appearance="outline">
-                            <input formControlName="min_drawback_value" required matInput placeholder="Valor minimo de desembolso">
+                            <input formControlName="min_drawback_value" required matInput placeholder="Valor mínimo de desembolso">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12 second-row">
+                        <p>Valor de deuda maximo, para tomar servicio</p>
+                        <mat-form-field appearance="outline">
+                            <input formControlName="max_debt_value" required matInput placeholder="Valor de deuda maximo, para tomar servicio">
                         </mat-form-field>
                     </div>
                     <div class="col-lg-4 col-md-6 col-sm-12 second-row">
@@ -120,15 +120,15 @@
                         </mat-form-field>
                     </div>
                     <div class="col-lg-4 col-md-6 col-sm-12 second-row">
-                        <p>Url Metodos de pago</p>
+                        <p>Url Métodos de pago</p>
                         <mat-form-field appearance="outline">
-                            <input formControlName="payment_url" required matInput placeholder=" Url Metodos de pago">
+                            <input formControlName="payment_url" required matInput placeholder=" Url Métodos de pago">
                         </mat-form-field>
                     </div>
                     <div class="col-lg-4 col-md-6 col-sm-12 second-row">
-                        <p>Url Solucion de inconvenientes</p>
+                        <p>Url Solución de inconvenientes</p>
                         <mat-form-field appearance="outline">
-                            <input formControlName="help_url" required matInput placeholder="Url Solucion de inconvenientes">
+                            <input formControlName="help_url" required matInput placeholder="Url Solución de inconvenientes">
                         </mat-form-field>
                     </div>
                     <div class="col-lg-4 col-md-6 col-sm-12 second-row">
@@ -143,9 +143,15 @@
                             <input formControlName="about_url" required matInput placeholder="Url Acerca de indomi">
                         </mat-form-field>
                     </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12 second-row">
+                        <p>Url de desembolso</p>
+                        <mat-form-field appearance="outline">
+                            <input formControlName="drawback_url" required matInput placeholder="Url de desembolso">
+                        </mat-form-field>
+                    </div>
 
                     <div class="col-lg-4 col-md-6 col-sm-12 second-row">
-                        <p>Pais</p>
+                        <p>País</p>
                         <mat-form-field appearance="outline">
                             <mat-select formControlName="country">
                                 <mat-option *ngFor="let country of countries" [value]="country.id" required selected>{{country.name}} </mat-option>

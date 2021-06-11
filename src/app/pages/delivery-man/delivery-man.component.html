@@ -1,7 +1,7 @@
 <ng-container class="animate__animated animate__fadeIn animate__slow">
     <div class="header-container">
         <div class="user-container ">
-            <span class="user-title ">Repartidores </span>
+            <span class="user-title ">Repartidores</span>
         </div>
         <div class="ADDSEARCH">
             <span>
@@ -28,7 +28,7 @@
             <table class="table table-hover table-responsive">
                 <thead>
                     <tr class="text-center">
-                        <th class="align-middle">PAGINA: {{pageNumber}} </th>
+                        <th class="align-middle">PÁGINA: {{pageNumber}} </th>
                         <th class="align-middle">ID DEL REPARTIDOR</th>
                         <th class="align-middle">FOTO</th>
                         <th class="align-middle">CELULAR</th>
@@ -54,7 +54,7 @@
 
                         <td class="align-middle" style="height: 77px !important;">{{domi.first_name}}</td>
                         <td class="align-middle" style="height: 77px !important;">{{domi.last_name}}</td>
-                        <td class="align-middle" style="height: 77px !important;">${{domi.total |number:'1.0-0'}}</td>
+                        <td class="align-middle" style="height: 77px !important;">$ {{domi.total |number:'1.0-0'}}</td>
                         <td class="align-middle" style="height: 77px !important;">
                             <i class="fas fa-edit" [routerLink]="['/Pages/DeliveryManDataBase', domi.id]"></i>
                             <a (click)="BlockDomi(domi)">
@@ -79,7 +79,7 @@
             <table class="table table-hover table-responsive">
                 <thead>
                     <tr class="text-center">
-                        <th class="align-middle">PAGINA: {{pageNumber}} </th>
+                        <th class="align-middle">PÁGINA: {{pageNumber}} </th>
                         <th class="align-middle">ID DEL REPARTIDOR</th>
                         <th class="align-middle">FOTO</th>
                         <th class="align-middle">CELULAR</th>
@@ -130,7 +130,7 @@
             <table class="table table-hover table-responsive">
                 <thead>
                     <tr class="text-center">
-                        <th class="align-middle">PAGINA: {{pageNumber}} </th>
+                        <th class="align-middle">PÁGINA: {{pageNumber}} </th>
                         <th class="align-middle my-auto">ID DEL MOVIMIENTO</th>
                         <th class="align-middle">NOMBRE </th>
                         <th class="align-middle">APELLIDO</th>

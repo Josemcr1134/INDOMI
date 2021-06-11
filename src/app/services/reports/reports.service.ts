@@ -28,14 +28,14 @@ export class ReportsService {
     }
   }
 
-  getReport(data){
-      const url = `${base_url}/report/report/?timestamp_start=${data.timestamp_start}&timestamp_end=${data.timestamp_end}`
+  getReport(timestamp_start, timestamp_end){
+      const url = `${base_url}/report/report/?timestamp_start=${timestamp_start}&timestamp_end=${timestamp_end}`
+      console.log(url)
 
          return this.http.get<Reports>(url, this.headers)
                 .pipe(
                   map(
                     (resp:Reports) =>  resp)
-
                   )
   }
 }

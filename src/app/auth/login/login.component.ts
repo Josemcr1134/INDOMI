@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/services/loginService/login.service';
 import Swal from 'sweetalert2';
+import { GuardsService } from '../../services/GuardsService/guards.service';
 
 @Component({
   selector: 'app-login',
@@ -13,12 +14,12 @@ export class LoginComponent implements OnInit {
  
  public formSubmitted:boolean = false
  public loginform = this.fb.group({
-   username: ['jose@indomi.co', [Validators.required, Validators.email]],
-   password: ['demodemo', Validators.required]
+   username: ['', [Validators.required, Validators.email]],
+   password: ['', Validators.required]
  })
   durationInSeconds = 5;
   hide = true;
-  constructor(private route: Router, private fb:FormBuilder, private loginService: LoginService) { }
+  constructor(private route: Router, private fb:FormBuilder, private loginService: LoginService, private guardsService: GuardsService) { }
 
   ngOnInit(): void {
    

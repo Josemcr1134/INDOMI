@@ -27,30 +27,30 @@
         <hr>
         <div class="dialog-form">
             <div class="dialog-name">
-                <p class="direction_name">DIRECCION #1</p>
+                <p class="direction_name">DIRECCIÓN #1</p>
                 <p class="direction_description"> {{activatedService.way_points[0].address}}
                 </p>
             </div>
             <div class="dialog-Description ">
-                <p class="direction_name">DIRECCION #2</p>
+                <p class="direction_name">DIRECCIÓN #2</p>
                 <p class="direction_description"> {{activatedService.way_points[1].address}}
                 </p>
             </div>
             <div class="dialog-cupon" *ngIf="activatedService.way_points[2] > 0 ">
-                <p class="direction_name">DIRECCION #3 </p>
+                <p class="direction_name">DIRECCIÓN #3 </p>
                 <p class="direction_description"> {{activatedService.way_points[2].address}}
                 </p>
 
             </div>
             <div class="dialog-typeAccount" *ngIf="activatedService.way_points[3] > 0">
-                <p class="direction_name">DIRECCION #4</p>
+                <p class="direction_name">DIRECCIÓN #4</p>
                 <p class="direction_description"> {{activatedService.way_points[3].address}}
 
                 </p>
 
             </div>
             <div class="dialog-typeAccount" *ngIf="activatedService.way_points[4] > 0">
-                <p class="direction_name">DIRECCION 5</p>
+                <p class="direction_name">DIRECCIÓN 5</p>
                 <p class="direction_description"> {{activatedService.way_points[4].address}}
                 </p>
 
@@ -60,7 +60,7 @@
                 <p class="direction_description">{{activatedService.user.first_name}} {{activatedService.user.last_name}}</p>
             </div>
             <div>
-                <p class="direction_name">METODO DE PAGO</p>
+                <p class="direction_name">MÉTODO DE PAGO</p>
                 <p class="direction_description">{{getPayMethod(activatedService.pay_method)}}</p>
             </div>
             <div>
@@ -72,7 +72,7 @@
         <hr>
     </div>
 
-    <div class="col-6 paginator col-md-12 mx-2 mb-3">
+    <div class="col-6 paginator col-md-12 mx-2 my-3 ">
         <button mat-raised-button class="cancel-button mr-2" (click)="pagination(-1)">Anterior</button>
         <button mat-raised-button (click)="pagination(1)" class="save-button ml-2 ">Siguiente</button>
 

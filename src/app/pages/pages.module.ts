@@ -40,6 +40,7 @@ import { DeliveryManDataBaseComponent } from './delivery-man-data-base/delivery-
 import { AddPromCodeComponent } from './add-prom-code/add-prom-code.component';
 import { ExpandServicesInfoComponent } from './expand-services-info/expand-services-info.component';
 import { IndicatorsComponent } from './indicators/indicators.component';
+import { ShowMorePQRComponent } from './show-more-pqr/show-more-pqr.component';
 @NgModule({
     declarations: [
       PagesComponent,
@@ -55,6 +56,7 @@ import { IndicatorsComponent } from './indicators/indicators.component';
     AddPromCodeComponent,
     ExpandServicesInfoComponent,
     IndicatorsComponent,
+    ShowMorePQRComponent,
     ],
     imports: [CommonModule,
         RouterModule,
