@@ -18,6 +18,7 @@ import { FrequentQuestionsComponent } from '../components/frequent-questions/fre
 import { PromoCodesComponent } from '../components/promo-codes/promo-codes.component';
 import { ReferySystemComponent } from '../components/refery-system/refery-system.component';
 import { IndicatorsComponent } from './indicators/indicators.component';
+import { DrawbacksComponent } from './drawbacks/drawbacks.component';
 
 const routes: Routes = [
     { path: 'Pages',
@@ -28,7 +29,7 @@ const routes: Routes = [
          {path: 'DeliveryMan', component: DeliveryManComponent, /*  canActivate:[GuardsService], */  },
          {path: 'DeliveryManDataBase/:id', component: DeliveryManDataBaseComponent, /*  canActivate:[GuardsService], */  },
          {path: 'activeService', component: ActiveServiceComponent,/*  canActivate:[GuardsService], */  },
-         {path: 'activeService', component: ActiveServiceComponent,/*  canActivate:[GuardsService], */  },
+         {path: 'Drawbacks', component: DrawbacksComponent,/*  canActivate:[GuardsService], */  },
          {path: 'Parameters', component: ParametersComponent,/*  canActivate:[GuardsService], */  },
          {path: 'Indicators', component: IndicatorsComponent,/*  canActivate:[GuardsService], */  },
          {path: 'Help', component: HelpComponent, /*  canActivate:[GuardsService], */  },

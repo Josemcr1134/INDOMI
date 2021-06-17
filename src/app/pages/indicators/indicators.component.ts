@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { city } from 'src/app/models/City.models';
 import { Reports } from 'src/app/models/Reports.models';
+import { CityService } from 'src/app/services/city/city.service';
 import { ReportsService } from 'src/app/services/reports/reports.service';
 import Swal from 'sweetalert2';
 
@@ -18,16 +20,23 @@ public cargando : boolean = false
 public buscado : boolean = false
 public timestamp_start: string = null
 public timestamp_end : string = null
-      constructor(private reportsService: ReportsService){
+public City : number 
+public cities: city[]
+
+      constructor(private reportsService: ReportsService, public cityservice:CityService){
       }
        
-      ngOnInit():void {      
+      ngOnInit():void { 
+
+      }
+      filter(){
+        this.getReports()
       }
      
       getReports(){
         this.cargando = true
         this.buscado = true
-        this.reportsService.getReport(this.timestamp_start, this.timestamp_end)
+        this.reportsService.getReport(this.timestamp_start, this.timestamp_end,)
                           .subscribe( (resp: Reports) => {
                             this.reports = resp
                             

@@ -3,6 +3,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { UsersService } from 'src/app/services/Users/users.service';
 import { LockedUser, Usuario } from '../../models/UserDash.model';
 import Swal from 'sweetalert2';
+import { CityService } from 'src/app/services/city/city.service';
+import { city } from 'src/app/models/City.models';
 
 
 
@@ -20,18 +22,27 @@ export class UsersComponent implements OnInit {
    public cargando: boolean = true
    public pageNumber:number = 1
    public totalServicios:number = 0
-  constructor(public dialog: MatDialog, private userService: UsersService) { }
+   public cities: city[]
+  constructor(public dialog: MatDialog, private userService: UsersService, public cityService: CityService) { }
+
+  getUsersByCity(){
+
+  }
 
   ngOnInit(): void {
-    this.getUsers()
-    this.getBlockedUsers()
+
+    this.getUsers();
+    this.getBlockedUsers();
+  }
+  filter(){
+    this.getUsers();
+    this.getBlockedUsers();
   }
   getUsers(){
     this.cargando = true
     this.userService.getUsers( true ,  true, this.pageNumber)
                       .subscribe( (usuarios) =>{
                             this.usuarios = usuarios
-                            console.log(this.usuarios)
                             this.usuariosTemp = usuarios
                             this.totalServicios = usuarios.length
                             this.cargando = false
@@ -39,6 +50,7 @@ export class UsersComponent implements OnInit {
                         }) 
 
   }
+ 
   pagination(valor:number){
     this.cargando = true
     this.pageNumber += valor;
@@ -66,7 +78,6 @@ export class UsersComponent implements OnInit {
     this.userService.getUsers( false,  true, this.pageNumber)
                         .subscribe( (lockedUsers) => {
                           this.lockedUsers =  lockedUsers
-                          console.log(this.lockedUsers)
                           this.cargando = false
                         })
 

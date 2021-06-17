@@ -1,244 +1,246 @@
-// Custom Theming for Angular Material
-// For more information: https://material.angular.io/guide/theming
-@import '~@angular/material/theming';
-// Plus imports for other components in your app.
-// Include the common styles for Angular Material. We include this here so that you only
-// have to load a single css file for Angular Material in your app.
-// Be sure that you only ever include this mixin once!
-@include mat-core();
-// Define the palettes for your theme using the Material Design palettes available in palette.scss
-// (imported above). For each palette, you can optionally specify a default, lighter, and darker
-// hue. Available color palettes: https://material.io/design/color/
-$INDOMI-primary: mat-palette($mat-indigo);
-$INDOMI-accent: mat-palette($mat-pink, A200, A100, A400);
-// The warn palette is optional (defaults to red).
-$INDOMI-warn: mat-palette($mat-red);
-// Create the theme object. A theme consists of configurations for individual
-// theming systems such as "color" or "typography".
-$INDOMI-theme: mat-light-theme(( color: ( primary: $INDOMI-primary, accent: $INDOMI-accent, warn: $INDOMI-warn, )));
-// Include theme styles for core and each component used in your app.
-// Alternatively, you can import and @include the theme mixins for each component
-// that you are using.
-@include angular-material-theme($INDOMI-theme);
-
-/* You can add global styles to this file, and also import other style files */
-
-@font-face {
-    font-family: 'Material Icons';
-    font-style: normal;
-    font-weight: 400;
-    src: url(https://example.com/MaterialIcons-Regular.eot);
-    /* For IE6-8 */
-    src: local('Material Icons'), local('MaterialIcons-Regular'), url(https://example.com/MaterialIcons-Regular.woff2) format('woff2'), url(https://example.com/MaterialIcons-Regular.woff) format('woff'), url(https://example.com/MaterialIcons-Regular.ttf) format('truetype');
-}
-
-.material-icons {
-    font-family: 'Material Icons';
-    font-weight: normal;
-    font-style: normal;
-    font-size: 24px;
-    /* Preferred icon size */
-    display: inline-block;
-    line-height: 1;
-    text-transform: none;
-    letter-spacing: normal;
-    word-wrap: normal;
-    white-space: nowrap;
-    direction: ltr;
-    /* Support for all WebKit browsers. */
-    -webkit-font-smoothing: antialiased;
-    /* Support for Safari and Chrome. */
-    text-rendering: optimizeLegibility;
-    /* Support for Firefox. */
-    -moz-osx-font-smoothing: grayscale;
-    /* Support for IE. */
-    font-feature-settings: 'liga';
-}
-
-html,
-body {
-    height: 100%;
-}
-
-body {
-    margin: 0;
-    font-family: 'Manrope';
-}
-
-div.contenedor {
-    background: url('./assets/background.png') 0% 0% !important;
-    opacity: 1;
-    overflow: hidden;
-    height: 100vh;
-    background-size: cover;
-}
-
-mat-ink-bar.mat-ink-bar {
-    background-color: black !important;
-}
-
-.mat-drawer-content {
-    overflow-x: hidden !important;
-}
-
-.mat-drawer-inner-container {
-    overflow: hidden !important;
-    background: #FBFBFB 0% 0% no-repeat padding-box;
-}
-
-.mat-tab-label .mat-tab-label-content {
-    font-family: 'Manrope';
-    margin-bottom: 6.5px;
-}
-
-.mat-form-field-appearance-outline .mat-form-field-wrapper {
-    margin: 0 !important;
-}
-
-.user-input .input {
-    padding: 0 !important;
-}
-
-.mat-tab-body-wrapper {
-    margin-left: 20px !important;
-}
-
-.mat-checkbox-ripple .mat-ripple-element,
-.mat-checkbox-checked.mat-accent .mat-checkbox-background,
-.mat-checkbox-inner-container .mat-checkbox-inner-container-no-side-margin {
-    background-color: #0094E6 !important;
-}
-
-.mat-table {
-    font-family: 'Manrope';
-}
-
-.mat-menu-content:not(:empty) {
-    width: 197px !important;
-    height: 80px;
-    padding: 0 !important;
-}
-
-button.mat-menu-item {
-    height: 38px !important;
-}
-
-.select {
-    width: 7% !important;
-}
-
-mat-icon.notranslate.arrow.material-icons.mat-icon-no-color {
-    font-size: 19px !important;
-    margin-top: 3px !important;
-    margin-left: 7px !important;
-}
-
-.mat-tab-body-wrapper {
-    background: #FBFBFB 0% 0% no-repeat padding-box;
-}
-
-a {
-    text-decoration: none;
-    color: black;
-}
-
-a:hover {
-    color: black;
-}
-
-.mat-tab-body-content {
-    overflow-x: hidden !important;
-}
-
-.countValue {
-    padding-top: 5px;
-}
-
-.editAccount-dialog.mat-dialog-container {
-    width: 556px !important;
-    height: 660px;
-    overflow: hidden !important;
-}
-
-.mat-form-field-appearance-outline .mat-form-field-infix {
-    padding: 0 !important;
-    height: 45px;
-    margin-top: 4px;
-}
-
-.mat-select {
-    margin-top: 16px;
-}
-
-.example-margin {
-    margin-right: 10px;
-}
-
-.mat-form-field-infix {
-    border-top: 0 !important;
-}
-
-input.mat-input-element {
-    margin-top: 17px;
-}
-
-.changePassword-dialog.mat-dialog-container {
-    height: 472px;
-    width: 556px;
-}
-
-mat-icon {
-    color: #666666;
-}
-
-.mat-dialog-container {
-    width: 556px !important;
-}
-
-.mat-slide-toggle.mat-checked .mat-slide-toggle-bar {
-    background-color: #EAEAEA !important;
-}
-
-.mat-slide-toggle-bar {
-    background-color: #EAEAEA !important;
-}
-
-.mat-slide-toggle.mat-checked .mat-slide-toggle-thumb {
-    background-color: #00DC52;
-}
-
-.mat-slide-toggle-content {
-    font-size: 12px;
-    color: #000000;
-    font-family: 'Manrope';
-}
-
-.mat-form-field-wrapper.user-account {
-    padding-bottom: 21px !important;
-}
-
-.mat-checkbox-layout .mat-checkbox-label {
-    line-height: 24px;
-    font-family: 'Manrope';
-    font-size: 14px;
-}
-
-label.label-form,
-strong {
-    font-family: 'Manrope';
-}
-
-.mat-form-field-appearance-outline .mat-form-field-outline {
-    background: white;
-}
-
-input:active {
-    outline: none !important;
-    border: none;
-}
-
-
-/* ng-container {
+    // Custom Theming for Angular Material
+    // For more information: https://material.angular.io/guide/theming
+    @import '~@angular/material/theming';
+    // Plus imports for other components in your app.
+    // Include the common styles for Angular Material. We include this here so that you only
+    // have to load a single css file for Angular Material in your app.
+    // Be sure that you only ever include this mixin once!
+    @include mat-core();
+    // Define the palettes for your theme using the Material Design palettes available in palette.scss
+    // (imported above). For each palette, you can optionally specify a default, lighter, and darker
+    // hue. Available color palettes: https://material.io/design/color/
+    $INDOMI-primary: mat-palette($mat-indigo);
+    $INDOMI-accent: mat-palette($mat-pink, A200, A100, A400);
+    // The warn palette is optional (defaults to red).
+    $INDOMI-warn: mat-palette($mat-red);
+    // Create the theme object. A theme consists of configurations for individual
+    // theming systems such as "color" or "typography".
+    $INDOMI-theme: mat-light-theme(( color: ( primary: $INDOMI-primary, accent: $INDOMI-accent, warn: $INDOMI-warn, )));
+    // Include theme styles for core and each component used in your app.
+    // Alternatively, you can import and @include the theme mixins for each component
+    // that you are using.
+    @include angular-material-theme($INDOMI-theme);
+    /* You can add global styles to this file, and also import other style files */
+    
+    @font-face {
+        font-family: 'Material Icons';
+        font-style: normal;
+        font-weight: 400;
+        src: url(https://example.com/MaterialIcons-Regular.eot);
+        /* For IE6-8 */
+        src: local('Material Icons'), local('MaterialIcons-Regular'), url(https://example.com/MaterialIcons-Regular.woff2) format('woff2'), url(https://example.com/MaterialIcons-Regular.woff) format('woff'), url(https://example.com/MaterialIcons-Regular.ttf) format('truetype');
+    }
+    
+    .material-icons {
+        font-family: 'Material Icons';
+        font-weight: normal;
+        font-style: normal;
+        font-size: 24px;
+        /* Preferred icon size */
+        display: inline-block;
+        line-height: 1;
+        text-transform: none;
+        letter-spacing: normal;
+        word-wrap: normal;
+        white-space: nowrap;
+        direction: ltr;
+        /* Support for all WebKit browsers. */
+        -webkit-font-smoothing: antialiased;
+        /* Support for Safari and Chrome. */
+        text-rendering: optimizeLegibility;
+        /* Support for Firefox. */
+        -moz-osx-font-smoothing: grayscale;
+        /* Support for IE. */
+        font-feature-settings: 'liga';
+    }
+    
+    html,
+    body {
+        height: 100%;
+    }
+    
+    body {
+        margin: 0;
+        font-family: 'Manrope';
+    }
+    
+    div.contenedor {
+        background: url('./assets/background.png') 0% 0% !important;
+        opacity: 1;
+        overflow: hidden;
+        height: 100vh;
+        background-size: cover;
+    }
+    /*  .navbar-brand {
+        height: 100%;
+        width: 100%;
+    }
+     */
+    
+    mat-ink-bar.mat-ink-bar {
+        background-color: black !important;
+    }
+    
+    .mat-drawer-content {
+        overflow-x: hidden !important;
+    }
+    
+    .mat-drawer-inner-container {
+        overflow: hidden !important;
+        background: #FBFBFB 0% 0% no-repeat padding-box;
+    }
+    
+    .mat-tab-label .mat-tab-label-content {
+        font-family: 'Manrope';
+        margin-bottom: 6.5px;
+    }
+    
+    .mat-form-field-appearance-outline .mat-form-field-wrapper {
+        margin: 0 !important;
+    }
+    
+    .user-input .input {
+        padding: 0 !important;
+    }
+    
+    .mat-tab-body-wrapper {
+        margin-left: 20px !important;
+    }
+    
+    .mat-checkbox-ripple .mat-ripple-element,
+    .mat-checkbox-checked.mat-accent .mat-checkbox-background,
+    .mat-checkbox-inner-container .mat-checkbox-inner-container-no-side-margin {
+        background-color: #0094E6 !important;
+    }
+    
+    .mat-table {
+        font-family: 'Manrope';
+    }
+    
+    .mat-menu-content:not(:empty) {
+        width: 197px !important;
+        height: 80px;
+        padding: 0 !important;
+    }
+    
+    button.mat-menu-item {
+        height: 38px !important;
+    }
+    
+    .select {
+        width: 7% !important;
+    }
+    
+    mat-icon.notranslate.arrow.material-icons.mat-icon-no-color {
+        font-size: 19px !important;
+        margin-top: 3px !important;
+        margin-left: 7px !important;
+    }
+    
+    .mat-tab-body-wrapper {
+        background: #FBFBFB 0% 0% no-repeat padding-box;
+    }
+    
+    a {
+        text-decoration: none;
+        color: black;
+    }
+    
+    a:hover {
+        color: black;
+    }
+    
+    .mat-tab-body-content {
+        overflow-x: hidden !important;
+    }
+    
+    .countValue {
+        padding-top: 5px;
+    }
+    
+    .editAccount-dialog.mat-dialog-container {
+        width: 556px !important;
+        height: 660px;
+        overflow: hidden !important;
+    }
+    
+    .mat-form-field-appearance-outline .mat-form-field-infix {
+        padding: 0 !important;
+        height: 45px;
+        margin-top: 4px;
+    }
+    
+    .mat-select {
+        margin-top: 16px;
+    }
+    
+    .example-margin {
+        margin-right: 10px;
+    }
+    
+    .mat-form-field-infix {
+        border-top: 0 !important;
+    }
+    
+    input.mat-input-element {
+        margin-top: 17px;
+    }
+    
+    .changePassword-dialog.mat-dialog-container {
+        height: 472px;
+        width: 556px;
+    }
+    
+    mat-icon {
+        color: #666666;
+    }
+    
+    .mat-dialog-container {
+        width: 556px !important;
+    }
+    
+    .mat-slide-toggle.mat-checked .mat-slide-toggle-bar {
+        background-color: #EAEAEA !important;
+    }
+    
+    .mat-slide-toggle-bar {
+        background-color: #EAEAEA !important;
+    }
+    
+    .mat-slide-toggle.mat-checked .mat-slide-toggle-thumb {
+        background-color: #00DC52;
+    }
+    
+    .mat-slide-toggle-content {
+        font-size: 12px;
+        color: #000000;
+        font-family: 'Manrope';
+    }
+    
+    .mat-form-field-wrapper.user-account {
+        padding-bottom: 21px !important;
+    }
+    
+    .mat-checkbox-layout .mat-checkbox-label {
+        line-height: 24px;
+        font-family: 'Manrope';
+        font-size: 14px;
+    }
+    
+    label.label-form,
+    strong {
+        font-family: 'Manrope';
+    }
+    
+    .mat-form-field-appearance-outline .mat-form-field-outline {
+        background: white;
+    }
+    
+    input:active {
+        outline: none !important;
+        border: none;
+    }
+    /* ng-container {
     overflow: hidden !important;
 }
 
@@ -246,60 +248,87 @@ input:active {
     overflow: hidden !important;
 }
  */
-
-.mat-tab-body {
-    margin-right: 3% !important
-}
-
-.swal2-styled.swal2-cancel {
-    background-color: red !important;
-}
-
-.swal2-styled.swal2-confirm {
-    background-color: #00BEDE !important;
-    outline: #00BEDE !important;
-}
-
-.swal2-icon.swal2-warning {
-    border-color: red !important;
-    color: red !important;
-}
-
-.mat-card:not([class*=mat-elevation-z]) {
-    box-shadow: none !important;
-}
-
-.mat-dialog-container {
-    height: auto !important;
-    width: 556px;
-    max-height: 650px !important;
-}
-
-.userCharge {
-    height: 100px !important;
-    margin-top: 30px;
-}
-
-.swal2-icon.swal2-success,
-.swal2-success-ring {
-    color: #00BEDE !important;
-    border-color: #00BEDE !important;
-}
-
-.swal2-icon.swal2-success [class^=swal2-success-line] {
-    background-color: #00BEDE !important;
-}
-
-.mat-body,
-.mat-body-1,
-.mat-typography {
-    font-family: 'Manrope';
-}
-
-.fa-unlock {
-    color: rgb(21, 216, 21);
-}
-
-.fa-lock {
-    color: red;
-}
+    
+    .mat-tab-body {
+        margin-right: 3% !important
+    }
+    
+    .swal2-styled.swal2-cancel {
+        background-color: red !important;
+    }
+    
+    .swal2-styled.swal2-confirm {
+        background-color: #00BEDE !important;
+        outline: #00BEDE !important;
+    }
+    
+    .swal2-icon.swal2-warning {
+        border-color: red !important;
+        color: red !important;
+    }
+    
+    .mat-card:not([class*=mat-elevation-z]) {
+        box-shadow: none !important;
+    }
+    
+    .mat-dialog-container {
+        height: auto !important;
+        width: 556px;
+        max-height: 650px !important;
+    }
+    
+    .userCharge {
+        height: 100px !important;
+        margin-top: 30px;
+    }
+    
+    .swal2-icon.swal2-success,
+    .swal2-success-ring {
+        color: #00BEDE !important;
+        border-color: #00BEDE !important;
+    }
+    
+    .swal2-icon.swal2-success [class^=swal2-success-line] {
+        background-color: #00BEDE !important;
+    }
+    
+    .mat-body,
+    .mat-body-1,
+    .mat-typography {
+        font-family: 'Manrope';
+    }
+    
+    .fa-unlock {
+        color: rgb(21, 216, 21);
+    }
+    
+    .fa-lock {
+        color: red;
+    }
+    
+    .complete {
+        font-weight: bold;
+        color: green
+    }
+    
+    .pending {
+        font-weight: bold;
+        color: blue
+    }
+    
+    .rejected {
+        font-weight: bold;
+        color: red
+    }
+    
+    .activo {
+        font-weight: bold;
+        color: orange
+    }
+    
+    .city {
+        margin-left: 45px;
+        font-family: 'Manrope';
+        font-size: 14px;
+        font-weight: bold;
+    }

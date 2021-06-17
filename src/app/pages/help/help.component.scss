@@ -178,10 +178,28 @@ button.mat-raised-button.save-button {
     border-radius: 23px;
     opacity: 1;
     color: white;
-    width: 100px;
+    width: 70px;
     height: 38px;
-    font-size: 12px;
+    font-size: 10px;
     font-weight: bold;
     font-family: 'Manrope' !important;
     margin-right: 11px;
+    margin-top: -5px;
+}
+
+button.mat-raised-button.filter-button {
+    background: #00BEDE;
+    border-radius: 23px;
+    opacity: 1;
+    color: white;
+    width: 130px;
+    height: 38px;
+    font-size: 10px;
+    font-weight: bold;
+    font-family: 'Manrope' !important;
+    margin-right: 11px;
+}
+
+i {
+    font-size: 18px;
 }

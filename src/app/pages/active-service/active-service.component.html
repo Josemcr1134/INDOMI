@@ -16,6 +16,23 @@
             </mat-form-field>
         </div>
     </div>
+
+    <div class="ml-2 city">
+        <h4 class="city-title ciudad">Selecciona una ciudad</h4>
+        <div class="row mt-2 ">
+            <div class="col">
+                <select class="form-select" aria-label="Default select example" [(ngModel)]="cityservice.selectedCity">
+                    <option value="" selected>Restablecer filtro</option>
+                    <option [value]="city.id" *ngFor="let city of (cityservice.citiesObs | async)">{{city.name}}</option>
+              </select>
+            </div>
+            <div class="col">
+                <button mat-raised-button (click)="filter()" class="save-button ml-2 ">Filtrar</button>
+
+            </div>
+        </div>
+
+    </div>
     <mat-tab-group animationDuration="0ms" class="mt-1 mx-3 ">
         <mat-tab label="Cargando" class=" fadeIn userCharge mt-2 mb-2 fast" *ngIf="cargando">
             <div class="alert alert-info text-center animated fadeIn fast" role="alert">
@@ -24,14 +41,14 @@
                 <p class="mb-0">Porfavor Espere...</p>
             </div>
         </mat-tab>
-        <mat-tab label="Listado de servicios">
+        <mat-tab label="Listado de servicios ({{activatedServices.length}}) ">
 
             <div class="table-responsive">
                 <table class="table table-hover table-responsive">
                     <thead>
                         <tr class="text-center">
                             <th class="align-middle">PÁGINA: {{pageNumber}}</th>
-                            <th class="align-middle">ID DEL SERVICIO</th>
+                            <th class="align-middle">ID</th>
                             <th class="align-middle">DIRECCIÓN 1</th>
                             <th class="align-middle">DIRECCIÓN 2</th>
                             <th class="align-middle">PAGO</th>
@@ -47,9 +64,7 @@
                         <tr *ngFor="let activatedService of activatedServices" class="text-center" style="height: 77px !important;">
 
                             <td class="align-middle" style="height: 77px !important;">
-                                <div class="form-checkvtex-center">
-                                    <input class="form-check-input text-center" type="checkbox" value="true" id="flexCheckDefault">
-                                </div>
+
                             </td>
                             <td class="align-middle" style="height: 77px !important;">{{activatedService.id}}</td>
                             <td class="align-middle" style="height: 77px !important;">{{activatedService.way_points[0].address | slice:0:40 }}... </td>
@@ -58,7 +73,7 @@
                             <td class="align-middle" style="height: 77px !important;">{{activatedService.domi_tax |number:'1.0-0'}}</td>
                             <td class="align-middle" style="height: 77px !important;">{{activatedService.user.first_name}} {{activatedService.user.last_name}}</td>
                             <td class="align-middle" style="height: 77px !important;">{{activatedService.created_at | date:'medium'}} </td>
-                            <td class="align-middle" style="height: 77px !important;">{{getStatus(activatedService.service_status)}} </td>
+                            <td class="align-middle " style="height: 77px !important;" [ngClass]="{'pending': activatedService.service_status < 2,  'activo':activatedService.service_status < 3,   'rejected':activatedService.service_status < 4 , 'complete':activatedService.service_status > 3 }">{{getStatus(activatedService.service_status)}} </td>
 
                             <td class="align-middle" style="height: 77px !important;">
 

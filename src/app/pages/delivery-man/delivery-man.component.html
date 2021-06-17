@@ -4,17 +4,28 @@
             <span class="user-title ">Repartidores</span>
         </div>
         <div class="ADDSEARCH">
-            <span>
-                <button mat-icon-button >
-                    <mat-icon class="add">download</mat-icon>
-                  </button>
-                <a target="_blank" href="http://134.209.36.121:8989/api/dashboard/v1/drawback-report/" class="link">Descargar CVS</a>
-            </span>
+
             <mat-form-field appearance="outline" class="field-input-user">
-                <input matInput placeholder="Buscar domi..." class="field-input-user" #searchTerm (keyup)="searchDrawbacks(searchTerm.value)" (keyup)="searchDomi(searchTerm.value)">
+                <input matInput placeholder="Buscar domi..." class="field-input-user" #searchTerm (keyup)="searchDomi(searchTerm.value)">
                 <mat-icon matPrefix style="color: #666666;" class="input">search</mat-icon>
             </mat-form-field>
         </div>
+    </div>
+    <div class="ml-2 city">
+        <h4 class="city-title ciudad">Selecciona una ciudad</h4>
+        <div class="row mt-2 ">
+            <div class="col">
+                <select class="form-select" aria-label="Default select example" [(ngModel)]="cityservice.selectedCity">
+                    <option value="" selected>Restablecer filtro</option>
+                    <option [value]="city.id" *ngFor="let city of (cityservice.citiesObs | async)">{{city.name}}</option>
+              </select>
+            </div>
+            <div class="col">
+                <button mat-raised-button (click)="filter()" class="save-button ml-2 ">Filtrar</button>
+
+            </div>
+        </div>
+
     </div>
     <mat-tab-group animationDuration="0ms" class="mt-1 mx-3 ">
         <mat-tab label="Cargando" class=" fadeIn userCharge mt-2 mb-2 fast" *ngIf="cargando">
@@ -28,24 +39,19 @@
             <table class="table table-hover table-responsive">
                 <thead>
                     <tr class="text-center">
-                        <th class="align-middle">PÁGINA: {{pageNumber}} </th>
-                        <th class="align-middle">ID DEL REPARTIDOR</th>
+                        <th class="align-middle">ID </th>
                         <th class="align-middle">FOTO</th>
                         <th class="align-middle">CELULAR</th>
                         <th class="align-middle">NOMBRE</th>
                         <th class="align-middle">APELLIDO</th>
                         <th class="align-middle">SALDO</th>
-                        <th></th>
+                        <th class="align-middle"> PÁGINA: {{pageNumber}}</th>
                     </tr>
                 </thead>
                 <tbody>
 
                     <tr *ngFor="let domi of domis" class="text-center" style="height: 77px !important;">
-                        <td class="align-middle" style="height: 77px !important;">
-                            <div class="form-checkvtex-center">
-                                <input class="form-check-input text-center" type="checkbox" value="true" id="flexCheckDefault">
-                            </div>
-                        </td>
+
                         <td class="align-middle" style="height: 77px !important;">{{domi.id}}</td>
                         <td class="align-middle" style="height: 77px !important;">
                             <img class="domi-foto" [src]="domi.photo" alt="">
@@ -79,8 +85,7 @@
             <table class="table table-hover table-responsive">
                 <thead>
                     <tr class="text-center">
-                        <th class="align-middle">PÁGINA: {{pageNumber}} </th>
-                        <th class="align-middle">ID DEL REPARTIDOR</th>
+                        <th class="align-middle">ID</th>
                         <th class="align-middle">FOTO</th>
                         <th class="align-middle">CELULAR</th>
                         <th class="align-middle">NOMBRE</th>
@@ -93,9 +98,7 @@
 
                     <tr *ngFor="let blockedDomi of blockedDomis" class="text-center" style="height: 77px !important;">
                         <td class="align-middle" style="height: 77px !important;">
-                            <div class="form-checkvtex-center">
-                                <input class="form-check-input text-center" type="checkbox" value="true" id="flexCheckDefault">
-                            </div>
+                            PÁGINA: {{pageNumber}}
                         </td>
                         <td class="align-middle" style="height: 77px !important;">{{blockedDomi.id}}</td>
                         <td class="align-middle" style="height: 77px !important;">
@@ -126,52 +129,7 @@
 
             </div>
         </mat-tab>
-        <mat-tab label="Desembolsos ({{drawBacks.length}})">
-            <table class="table table-hover table-responsive">
-                <thead>
-                    <tr class="text-center">
-                        <th class="align-middle">PÁGINA: {{pageNumber}} </th>
-                        <th class="align-middle my-auto">ID DEL MOVIMIENTO</th>
-                        <th class="align-middle">NOMBRE </th>
-                        <th class="align-middle">APELLIDO</th>
-                        <th class="align-middle">TIPO DE MOVIMIENTO</th>
-                        <th class="align-middle">DETALLES</th>
-                        <th class="align-middle">ESTADO</th>
-                        <th class="align-middle">TOTAL</th>
-                        <th class="align-middle">FECHA</th>
-                    </tr>
-                </thead>
-                <tbody>
 
-                    <tr *ngFor="let drawBack of drawBacks" class="text-center" style="height: 77px !important;">
-                        <td class="align-middle">
-                            <div class="form-checkvtex-center">
-                                <input class="form-check-input text-center" type="checkbox" value="true" id="flexCheckDefault">
-                            </div>
-                        </td>
-                        <td class="align-middle" style="height: 77px !important;">{{drawBack.id}}</td>
-                        <td class="align-middle" style="height: 77px !important;">{{drawBack.transaction.user.first_name}}</td>
-                        <td class="align-middle" style="height: 77px !important;">{{drawBack.transaction.user.last_name}}</td>
-                        <td class="align-middle" style="height: 77px !important;">{{getTransactionType(drawBack.transaction.transaction_type)}}</td>
-
-                        <td class="align-middle" style="height: 77px !important;">{{getDetails(drawBack.transaction.detail)}}</td>
-                        <td class="align-middle" style="height: 77px !important;">{{getStatus(drawBack.transaction.status) }}</td>
-                        <td class="align-middle" style="height: 77px !important;">{{drawBack.total |number:'1.0-0'}}</td>
-                        <td class="align-middle" style="height: 77px !important;">{{drawBack.transaction.timestamp | date:'medium'}}</td>
-
-
-
-                    </tr>
-
-                </tbody>
-
-            </table>
-            <div class="paginator m-3">
-                <button mat-raised-button class="cancel-button mr-2" (click)="pagination(-1)">Anterior</button>
-                <button mat-raised-button (click)="pagination(1)" class="save-button ml-2 ">Siguiente</button>
-
-            </div>
-        </mat-tab>
     </mat-tab-group>
 
 </ng-container>

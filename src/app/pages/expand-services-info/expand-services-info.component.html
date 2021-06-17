@@ -22,7 +22,7 @@
     <div class="VerMas" *ngFor="let activatedService of activatedServices">
 
         <p class="dialog-title d-flex">Servicio {{activatedService.id}}
-            <small class="services_status d-flex">{{getStatus(activatedService.service_status)}}</small></p>
+            <small class="services_status d-flex" [ngClass]="{'pending': activatedService.service_status < 2,  'activo':activatedService.service_status < 3,   'rejected':activatedService.service_status < 4 , 'complete':activatedService.service_status > 3 }">{{getStatus(activatedService.service_status)}}</small></p>
 
         <hr>
         <div class="dialog-form">

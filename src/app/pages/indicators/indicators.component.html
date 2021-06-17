@@ -23,6 +23,22 @@
                         <button mat-raised-button class="save-button ml-2 " (click)="getReports()">Solicitar Indicadores</button>
 
                     </div>
+
+                </div>
+            </div>
+            <div class=" city">
+                <h4 class="city-title ciudad">Selecciona una ciudad</h4>
+                <div class="row mt-2 ">
+                    <div class="col">
+                        <select class="form-select" aria-label="Default select example" [(ngModel)]="cityservice.selectedCity">
+                            <option value="" selected>General</option>
+                            <option [value]="city.id" *ngFor="let city of (cityservice.citiesObs | async)">{{city.name}}</option>
+                      </select>
+                    </div>
+                    <div class="col">
+                        <button mat-raised-button (click)="filter()" class="save-button ml-2 ">Filtrar</button>
+
+                    </div>
                 </div>
 
             </div>

@@ -3,6 +3,7 @@ import { ParametersService } from 'src/app/services/Parameters/parameters.servic
 import { ChargeParameters, country, Parameters } from 'src/app/models/Parameters.model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { CityService } from 'src/app/services/city/city.service';
 
 @Component({
   selector: 'app-parameters',
@@ -15,12 +16,13 @@ export class ParametersComponent implements OnInit {
   public parametersForm:FormGroup
   public parametersSelected : Parameters
   public cargando : boolean = true
-  constructor(private parametersService: ParametersService, private fb:FormBuilder) { }
+  constructor(private parametersService: ParametersService, private fb:FormBuilder, private cityservice: CityService) { }
   
   ngOnInit(): void {
     this.cargando = true
     this.getParameters()
     this.getCountries()
+    this.cityservice.getCities(1);
 
     this.parametersForm = this.fb.group({
       id:               ['', Validators.required ] ,

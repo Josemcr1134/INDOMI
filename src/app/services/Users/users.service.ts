@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { map, tap } from 'rxjs/operators';
 import { chargeUsers, Usuario } from '../../models/UserDash.model';
+import { CityService } from '../city/city.service';
 
 const base_url = environment.base_url;
 @Injectable({
@@ -10,7 +11,7 @@ const base_url = environment.base_url;
 })
 export class UsersService {
   public usuario: Usuario[];
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,  private cityService: CityService) { }
   get token(): string{
     return localStorage.getItem('token');
 
@@ -29,7 +30,7 @@ export class UsersService {
     }
   }
     getUsers(is_active:boolean, is_user:boolean, pageNumber:number = 1){
-  const url = `${base_url}/users/?is_active=${is_active}&is_user=${is_user}&page=${pageNumber}`;
+  const url = `${base_url}/users/?is_active=${is_active}&is_user=${is_user}&page=${pageNumber}${this.cityService.getSelectedCityFilter()}`;
      return  this.http.get(url, this.headers)
                  .pipe(
                    map((resp: any) => {
@@ -44,7 +45,7 @@ export class UsersService {
     return this.http.put(url ,data, this.headers)
   }
   searchUsers(is_active:boolean, is_user:boolean,SearchTerm: string ){
-    const url = `${base_url}/users/?is_active=${is_active}&is_user=${is_user}&search=${SearchTerm}`
+    const url = `${base_url}/users/?is_active=${is_active}&is_user=${is_user}&search=${SearchTerm}${this.cityService.getSelectedCityFilter()}`
     return this.http.get<chargeUsers>(url, this.headers)
                   .pipe(
                     map(resp => resp.results
