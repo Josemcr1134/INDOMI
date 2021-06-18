@@ -17,19 +17,19 @@
             <form [formGroup]="parametersForm" (ngSubmit)="changeParametros()">
                 <div class="row mt-1">
 
-                    <div class="col-lg-4 col-md-6 col-sm-12 first-row">
+                    <div class="col-lg-4 col-md-6 col-sm-12 second-row">
                         <p class>ID del parámetro</p>
                         <mat-form-field appearance="outline">
-                            <input formControlName="id" matInput placeholder="ID del parámetro" required>
+                            <input type="number" formControlName="id" matInput placeholder="ID del parámetro" required>
                         </mat-form-field>
                     </div>
-                    <div class="col-lg-4 col-md-6 col-sm-12 first-row">
+                    <div class="col-lg-4 col-md-6 col-sm-12 second-row">
                         <p class>Tarifa de servicio a usuario</p>
                         <mat-form-field appearance="outline">
                             <input formControlName="user_tax_percent" required matInput placeholder="Tarifa de servicio a usuario">
                         </mat-form-field>
                     </div>
-                    <div class="col-lg-4 col-md-6 col-sm-12 first-row">
+                    <div class="col-lg-4 col-md-6 col-sm-12 second-row">
                         <p class>Tarifa de servicio a domi</p>
                         <mat-form-field appearance="outline">
                             <input formControlName="domi_tax_percent" required matInput placeholder="Tarifa de servicio a domi">

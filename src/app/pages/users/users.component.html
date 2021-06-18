@@ -66,7 +66,7 @@
                         <td class="align-middle" style="height: 77px !important;">{{usuario.first_name}}</td>
                         <td class="align-middle" style="height: 77px !important;">{{usuario.last_name}}</td>
                         <td class="align-middle" style="height: 77px !important;">{{usuario.username}}</td>
-                        <td class="align-middle" style="height: 77px !important;">$ {{usuario.total |number:'1.0-0'}} </td>
+                        <td class="align-middle" style="height: 77px !important;">{{usuario.total |currency:'$'}} </td>
 
                         <td class="dropdown align-middle">
                             <span>
@@ -112,7 +112,7 @@
                         </td>
                         <td class="align-middle" style="height: 77px !important;">{{lockedUser.first_name}}</td>
                         <td class="align-middle" style="height: 77px !important;">{{lockedUser.last_name}}</td>
-                        <td class="align-middle" style="height: 77px !important;"> {{lockedUser.total}} </td>
+                        <td class="align-middle" style="height: 77px !important;"> {{lockedUser.total | currency:'COP'}} </td>
                         <td class="dropdown align-middle">
                             <a (click)="DisBlockUser(lockedUser)">
                                 <i class="fas fa-lock"></i>

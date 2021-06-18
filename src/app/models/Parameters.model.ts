@@ -30,6 +30,7 @@ export class Parameters {
       public  help_url: string, 
       public  reward_url: string, 
       public  about_url: string, 
+      public  drawback_url: string, 
       public drawback_value: string,
       public  country:country     ){}
 }

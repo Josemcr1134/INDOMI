@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, CurrencyPipe } from '@angular/common';
 
 import { RouterModule } from '@angular/router';
 
@@ -83,6 +83,7 @@ import { DrawbacksComponent } from './drawbacks/drawbacks.component';
         ReactiveFormsModule,
         MatPaginatorModule,
          MatSelectModule,
+         
     ],
     exports: [
       PagesComponent,
@@ -94,6 +95,7 @@ import { DrawbacksComponent } from './drawbacks/drawbacks.component';
       HelpComponent,
       
     ],
-    providers: [],
-})
+    providers:[CurrencyPipe]
+
+  })
 export class pagesModule {}

@@ -110,7 +110,7 @@
                         <td class="align-middle" style="height: 77px !important;">{{blockedDomi.last_name}}</td>
                         <td class="align-middle" style="height: 77px !important;">{{blockedDomi.total |number:'1.0-0'}}</td>
                         <td class="align-middle" style="height: 77px !important;">
-                            <i class="fas fa-edit" [routerLink]="['/Pages/DeliveryManDataBase']"></i>
+                            <i class="fas fa-edit" [routerLink]="['/Pages/DeliveryManDataBase', blockedDomi.id]"></i>
                             <a (click)="DisBlockDomi(blockedDomi)">
                                 <i class="fas fa-lock"></i>
 
