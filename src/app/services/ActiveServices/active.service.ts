@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { map } from 'rxjs/operators';
 import { ActiveServices } from 'src/app/models/ActiveServices.model';
 import { chargeActiveServices } from '../../models/ActiveServices.model';
+import { CityService } from '../city/city.service';
 
 const base_url = environment.base_url
 @Injectable({
@@ -11,7 +12,7 @@ const base_url = environment.base_url
 })
 export class ActiveService {
   public activeservices: ActiveServices
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, public cityservice: CityService) { }
   get token(): string{
     return localStorage.getItem('token');
 
@@ -30,14 +31,14 @@ export class ActiveService {
   }
 
   getActiveServices(pageNumber: number = 1){
-    const url = `${base_url}/services/?page=${pageNumber}`
+    const url = `${base_url}/services/?page=${pageNumber}${this.cityservice.getSelectedCityFilter()}`
     return this.http.get<chargeActiveServices>(url, this.headers)
           .pipe(
             map(resp=> resp.results)
           )
   }
   searchActiveServices(searchTerm: string){
-    const url = `${base_url}/services/?search=${searchTerm}`
+    const url = `${base_url}/services/?search=${searchTerm}${this.cityservice.getSelectedCityFilter()}`
     return this.http.get(url, this.headers)
           .pipe(
             map((resp:any) => resp.results

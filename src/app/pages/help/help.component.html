@@ -4,12 +4,25 @@
             <span class="user-title ">Ayuda</span>
         </div>
         <div class="ADDSEARCH">
-            <!-- 
-            <mat-form-field appearance="outline" class="field-input-user">
-                <input matInput (keyup)="applyFilter($event)" placeholder="Buscar usuarios" class="field-input-user" #input>
-                <mat-icon matPrefix style="color: #666666;" class="input">search</mat-icon>
-            </mat-form-field> -->
+
         </div>
+
+    </div>
+    <div class="ml-2 city">
+        <h4 class="city-title ciudad">Selecciona una ciudad</h4>
+        <div class="row mt-2 ">
+            <div class="col">
+                <select class="form-select" aria-label="Default select example" [(ngModel)]="cityservice.selectedCity">
+                    <option value="" selected>Restablecer filtro</option>
+                    <option [value]="city.id" *ngFor="let city of (cityservice.citiesObs | async)">{{city.name}}</option>
+              </select>
+            </div>
+            <div class="col">
+                <button mat-raised-button (click)="filter()" class="filter-button ml-2 ">Filtrar</button>
+
+            </div>
+        </div>
+
     </div>
     <mat-tab-group animationDuration="0ms" class="mt-1 mx-3 ">w
         <mat-tab label="Variables">
@@ -56,7 +69,135 @@
                 </div>
             </div>
         </mat-tab>
+        <mat-tab label="PQR Pendientes">
+            <table class="table text-center">
+                <thead class="align-middle">
+                    <tr>
+                        <th class="align-middle" scope="col"># DE SOLICITUD</th>
+                        <th scope="col">FECHA DE SOLICITUD</th>
+                        <th scope="col">FECHA DE RESPUESTA</th>
+                        <th scope="col">USUARIO</th>
+                        <th scope="col">TIPO DE USUARIO</th>
+                        <th scope="col">ASUNTO</th>
+                        <th scope="col">MENSAJE</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody class="align-middle">
+                    <tr *ngFor="let pqr of pqrs">
+                        <td>{{pqr.id}}</td>
+                        <td>{{pqr.created_at |date:'medium'}}</td>
+                        <td>{{pqr.completed_at |date:'medium'}}
+                            <p *ngIf="!pqr.completed_at">No ha sido respondido</p>
+                        </td>
+                        <td>{{pqr.user.username}}</td>
+                        <td>{{getUsertype(pqr.user_type)}}</td>
+                        <td>{{getPqrType(pqr.pqr)}}</td>
+                        <td *ngIf="!mostrarmas">{{pqr.description | slice:0: 20}}...
+                        </td>
+                        <td *ngIf="mostrarmas">{{pqr.description}}
+                        </td>
 
+                        <td>
+                            <button *ngIf="!mostrarmas" mat-raised-button class="save-button" (click)="mostrarMas() ">Ver mas</button>
+                            <button *ngIf="mostrarmas" mat-raised-button class="save-button" (click)="mostarMenos()">Ver menos</button>
+                            <span>
+                                <a  (click)="ReviewPQR(pqr)" style="cursor: pointer;">
+                                    <i class="fas fa-check" style="color: grey  !important;" ></i>
+                                </a>
+                            </span>
+
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </mat-tab>
+        <mat-tab label="PQR Completados">
+            <table class="table text-center">
+                <thead class="align-middle">
+                    <tr>
+                        <th class="align-middle" scope="col"># DE SOLICITUD</th>
+                        <th scope="col">FECHA DE SOLICITUD</th>
+                        <th scope="col">FECHA DE RESPUESTA</th>
+                        <th scope="col">USUARIO</th>
+                        <th scope="col">TIPO DE USUARIO</th>
+                        <th scope="col">ASUNTO</th>
+                        <th scope="col">MENSAJE</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody class="align-middle">
+                    <tr *ngFor="let pqrsCompleted of pqrsCompleteds">
+                        <td>{{pqrsCompleted.id}}</td>
+                        <td>{{pqrsCompleted.created_at |date:'medium'}}</td>
+                        <td>{{pqrsCompleted.completed_at |date:'medium'}}
+                            <p *ngIf="!pqrsCompleted.completed_at">No ha sido respondido</p>
+                        </td>
+                        <td>{{pqrsCompleted.user.username}}</td>
+                        <td>{{getUsertype(pqrsCompleted.user_type)}}</td>
+                        <td>{{getPqrType(pqrsCompleted.pqr)}}</td>
+                        <td *ngIf="!mostrarmas">{{pqrsCompleted.description | slice:0: 20}}...
+                        </td>
+                        <td *ngIf="mostrarmas">{{pqrsCompleted.description}}
+                        </td>
+
+                        <td>
+                            <button *ngIf="!mostrarmas" mat-raised-button class="save-button" (click)="mostrarMas() ">Ver mas</button>
+                            <button *ngIf="mostrarmas" mat-raised-button class="save-button" (click)="mostarMenos()">Ver menos</button>
+                            <span>
+                                <a  (click)="deletePQR(pqrsCompleted)" style="cursor: pointer;">
+                                    <i class="far fa-trash-alt" style="color: red"></i>                               </a>
+                            </span>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </mat-tab>
+        <mat-tab label="PQR En Revision">
+            <table class="table text-center">
+                <thead class="align-middle">
+                    <tr>
+                        <th class="align-middle" scope="col"># DE SOLICITUD</th>
+                        <th scope="col">FECHA DE SOLICITUD</th>
+                        <th scope="col">FECHA DE RESPUESTA</th>
+                        <th scope="col">USUARIO</th>
+                        <th scope="col">TIPO DE USUARIO</th>
+                        <th scope="col">ASUNTO</th>
+                        <th scope="col">MENSAJE</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody class="align-middle">
+                    <tr *ngFor="let pqrsRevision of pqrsRevisions">
+                        <td>{{pqrsRevision.id}}</td>
+                        <td>{{pqrsRevision.created_at |date:'medium'}}</td>
+                        <td>{{pqrsRevision.completed_at |date:'medium'}}
+                            <p *ngIf="!pqrsRevision.completed_at">No ha sido respondido</p>
+                        </td>
+                        <td>{{pqrsRevision.user.username}}</td>
+                        <td>{{getUsertype(pqrsRevision.user_type)}}</td>
+                        <td>{{getPqrType(pqrsRevision.pqr)}}</td>
+                        <td *ngIf="!mostrarmas">{{pqrsRevision.description | slice:0: 20}}...
+                        </td>
+                        <td *ngIf="mostrarmas">{{pqrsRevision.description}}
+                        </td>
+
+                        <td>
+                            <button *ngIf="!mostrarmas" mat-raised-button class="save-button" (click)="mostrarMas() ">Ver mas</button>
+                            <button *ngIf="mostrarmas" mat-raised-button class="save-button" (click)="mostarMenos()">Ver menos</button>
+                            <span>
+                                <a  (click)="CompletePQR(pqrsRevision)" style="cursor: pointer;">
+                                    <i class="fas fa-clipboard-list" style="color: green !important;"></i> 
+                               </a>
+                            </span>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </mat-tab>
     </mat-tab-group>
 
 </ng-container>

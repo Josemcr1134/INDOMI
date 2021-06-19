@@ -5,6 +5,8 @@ import { ActiveServices, getServiceStatus } from 'src/app/models/ActiveServices.
 import { way_points, getPayMethod } from '../../models/ActiveServices.model';
 import {MatDialog} from '@angular/material/dialog';
 import { ExpandServicesInfoComponent } from '../expand-services-info/expand-services-info.component';
+import { city } from 'src/app/models/City.models';
+import { CityService } from 'src/app/services/city/city.service';
 @Component({
   selector: 'app-active-service',
   templateUrl: './active-service.component.html',
@@ -21,12 +23,18 @@ getPayMethod = getPayMethod
  public cargando : boolean = true
  public pageNumber:number = 1
  public totalServicios:number = 0
-  constructor(private activeservice:ActiveService, public dialog: MatDialog) { }
+ public cities: city[]
+
+  constructor(private activeservice:ActiveService, public dialog: MatDialog, public cityservice:CityService) { }
 
   ngOnInit(): void {
     this.cargando = true
     this.getActiveService()
   }
+  filter(){
+    this.getActiveService()
+  }
+ 
   getActiveService(){
     this.cargando = true
     this.activeservice.getActiveServices(this.pageNumber)

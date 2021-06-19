@@ -1,39 +1,53 @@
 import { Component, OnInit } from '@angular/core';
+import { city } from 'src/app/models/City.models';
 import { Reports } from 'src/app/models/Reports.models';
+import { CityService } from 'src/app/services/city/city.service';
 import { ReportsService } from 'src/app/services/reports/reports.service';
+import Swal from 'sweetalert2';
 
 /* import * as pluginDataLabels from 'chartjs-plugin-datalabels';
  */
+
 @Component({
   selector: 'app-indicators',
   templateUrl: './indicators.component.html',
   styleUrls: ['./indicators.component.scss']
 })
 export class IndicatorsComponent implements OnInit {
-  public timestamp_start: string = ""
-  public timestamp_end: string = ""
+ 
   public reports: Reports
 public cargando : boolean = false
 public buscado : boolean = false
-      constructor(private reportsService: ReportsService){
+public timestamp_start: string = null
+public timestamp_end : string = null
+public City : number 
+public cities: city[]
+
+      constructor(private reportsService: ReportsService, public cityservice:CityService){
       }
-      ngOnInit():void {      
+       
+      ngOnInit():void { 
+
       }
-       data = {
-        timestamp_start: this.timestamp_start,
-        timestamp_end: this.timestamp_end
+      filter(){
+        this.getReports()
       }
+     
       getReports(){
         this.cargando = true
         this.buscado = true
-        this.reportsService.getReport(this.data)
+        this.reportsService.getReport(this.timestamp_start, this.timestamp_end,)
                           .subscribe( (resp: Reports) => {
                             this.reports = resp
-                            console.log(this.data)
-                            console.log(resp)
+                            
                             this.cargando = false
                           }, (err => {
-                            console.log(err)
+                           Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Formato o Fechas Incorrectas!',
+                          
+                           } )
                             this.cargando = false
 
                           }))    

@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { ChargeDrawBacks, DrawBacks } from 'src/app/models/DrawBacks.model';
+import { CityService } from '../city/city.service';
 const base_url = environment.base_url;
 const v1_url = environment.V1_url;
 @Injectable({
@@ -11,9 +12,8 @@ const v1_url = environment.V1_url;
 })
 export class DeliveryManService {
 public domis: Domi[]
-public drawbacks: DrawBacks[]
 public domiData: DomiData[]
-constructor (private http: HttpClient){}
+constructor (private http: HttpClient, public cityservice:CityService){}
   get token(): string{
     return localStorage.getItem('token');
 
@@ -32,7 +32,7 @@ constructor (private http: HttpClient){}
     }
   }
     getDomi(is_active: boolean, is_user: boolean, pageNumber:number = 1 ){
-  const url = `${base_url}/users/?is_active=${is_active}&is_user=${is_user}&page=${pageNumber}`;
+  const url = `${base_url}/users/?is_active=${is_active}&is_user=${is_user}&page=${pageNumber}${this.cityservice.getSelectedCityFilter()}`;
 
      return  this.http.get<CargarDomi>(url, this.headers)
                  .pipe(
@@ -46,18 +46,7 @@ constructor (private http: HttpClient){}
                  )
                 
   }
-  getDrawBacks(pageNumber:number = 1){
-    const url = `${base_url}/drawbacks/?page=${pageNumber}`
-    return this.http.get<ChargeDrawBacks>(url, this.headers)
-                .pipe(
-                  map(resp => {
-                    const drawBacks = resp.results.map(
-                      drawback => new DrawBacks(drawback.id, drawback.transaction, drawback.phone, drawback.doc_number, drawback.status, drawback.observation ,drawback.total, drawback.pay_at, drawback.paid_by)
-                    )
-                    return {count: resp.count, drawBacks}
-                  })
-                )
-  }
+ 
   blockDomi(data:Domi ){
     const url = `${base_url}/users/${data.id}/block_unblock_user/`
     return this.http.put(url ,data, this.headers)
@@ -76,20 +65,12 @@ constructor (private http: HttpClient){}
                       
  }
  searchDomi(is_active:boolean, is_user:boolean,searchTerm: string ){
-  const url = `${base_url}/users/?is_active=${is_active}&is_user=${is_user}&search=${searchTerm}`
+  const url = `${base_url}/users/?is_active=${is_active}&is_user=${is_user}&search=${searchTerm}${this.cityservice.getSelectedCityFilter()}`
   return this.http.get<CargarDomi>(url, this.headers)
                 .pipe(
                   map(resp => resp.results
                     )
                 )
 }
-searchDrawbacks(searchTerm:string){
-  const url = `${base_url}/drawbacks/?search=${searchTerm}`
 
-  return this.http.get<ChargeDrawBacks>(url, this.headers)
-                    .pipe(
-                      map(resp => resp.results
-                        )
-                    )
-}
 }

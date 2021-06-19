@@ -50,7 +50,7 @@ export class Transactions {
     
 }
 
-export class ReferTransactions {
+export class TypeTransactions {
     constructor(
         public total: string,
         public id: number,
@@ -71,17 +71,17 @@ export function getDetails(detail: number): string{
 
     switch (detail) {
         case 1:
-            return 'Carga'
+            return 'Recarga'
         case 2:
             return 'Servicio'
         case 3:
-            return 'Cuota'
+            return 'Tarifa'
         case 4 :
             return 'Rembolso'
         case 5 : 
-            return 'Referir'
+            return 'Referidos'
         case 6 :
-            return 'Retroceso'
+            return 'Desembolso'
     
         default:
             return 'Nada';

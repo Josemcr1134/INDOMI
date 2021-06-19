@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs/internal/Observable';
+import { LoginService } from '../loginService/login.service';
 
 @Injectable({
   providedIn: 'root'
@@ -23,17 +24,17 @@ export class GuardsService {
       }
     }
   }
-  constructor(private route: Router, ) { }
+  constructor(private route: Router,private loginService: LoginService ) { }
   canActivate(
     _next: ActivatedRouteSnapshot,
-    _state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-     if(this.token.length > 20){
-      this.route.navigate(['/Pages']);
+    _state: RouterStateSnapshot) {
+/*       if (this.token ) {
+        this.route.navigateByUrl('/Pages')
+        return true
     } else {
+     this.route.navigateByUrl('')
+     return false
+    } */
      
-
-      this.route.navigateByUrl('/')
-      return false;
-    }
   }
 }

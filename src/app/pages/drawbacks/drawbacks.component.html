@@ -1,0 +1,180 @@
+<ng-container class="animate__animated animate__fadeIn animate__slow">
+    <div class="header-container">
+        <div class="user-container ">
+            <span class="user-title ">Desembolsos</span>
+        </div>
+        <div class="ADDSEARCH">
+            <span>
+                <button mat-icon-button >
+                    <mat-icon class="add">download</mat-icon>
+                  </button>
+                <a target="_blank" href="http://134.209.36.121:8989/api/dashboard/v1/drawback-report/" class="link">Descargar CVS</a>
+            </span>
+            <mat-form-field appearance="outline" class="field-input-user">
+                <input matInput placeholder="Buscar desembolso..." class="field-input-user" #searchTerm (keyup)="searchPendingDrawbacks(searchTerm.value)" (keyup)="searchCompleted(searchTerm.value)" (keyup)="searchRejectedDrawbacks(searchTerm.value)">
+                <mat-icon matPrefix style="color: #666666;" class="input">search</mat-icon>
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="ml-2 city">
+        <h4 class="city-title ciudad">Selecciona una ciudad</h4>
+        <div class="row mt-2 ">
+            <div class="col">
+                <select class="form-select" aria-label="Default select example" [(ngModel)]="cityservice.selectedCity">
+                    <option value="" selected>Restablecer filtro</option>
+                    <option [value]="city.id" *ngFor="let city of (cityservice.citiesObs | async)">{{city.name}}</option>
+              </select>
+            </div>
+            <div class="col">
+                <button mat-raised-button (click)="filter()" class="save-button ml-2 ">Filtrar</button>
+
+            </div>
+        </div>
+
+    </div>
+    <mat-tab-group animationDuration="0ms" class="mt-1 mx-3 ">
+        <mat-tab label="Cargando" class=" fadeIn userCharge mt-2 mb-2 fast" *ngIf="cargando">
+            <div class="alert alert-info text-center animated fadeIn fast" role="alert">
+                <h4 class="alert-heading">Cargando</h4>
+                <i class="fa fa-spin fa-refresh fa-2x"></i>
+                <p class="mb-0">Porfavor Espere...</p>
+            </div>
+        </mat-tab>
+
+        <mat-tab label="Rechazados({{rejectedDrawbacks.length}})">
+            <table class="table table-hover table-responsive">
+                <thead>
+                    <tr class="text-center">
+                        <th class="align-middle">PÁGINA: {{pageNumber}} </th>
+                        <th class="align-middle my-auto">ID</th>
+                        <th class="align-middle">NOMBRE </th>
+                        <th class="align-middle">APELLIDO</th>
+                        <th class="align-middle">TIPO</th>
+                        <th class="align-middle">DETALLES</th>
+                        <th class="align-middle">ESTADO</th>
+                        <th class="align-middle">TOTAL</th>
+                        <th class="align-middle">FECHA</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr *ngFor="let rejectedDrawback of rejectedDrawbacks" class="text-center" style="height: 77px !important;">
+                        <td class="align-middle">
+                        </td>
+                        <td class="align-middle" style="height: 77px !important;">{{rejectedDrawback.id}}</td>
+                        <td class="align-middle" style="height: 77px !important;">{{rejectedDrawback.transaction.user.first_name}}</td>
+                        <td class="align-middle" style="height: 77px !important;">{{rejectedDrawback.transaction.user.last_name}}</td>
+                        <td class="align-middle" style="height: 77px !important;">{{getTransactionType(rejectedDrawback.transaction.transaction_type)}}</td>
+
+                        <td class="align-middle" style="height: 77px !important;">{{getDetails(rejectedDrawback.transaction.detail)}}</td>
+                        <td class="align-middle" style="height: 77px !important;">{{getStatus(rejectedDrawback.status) }}</td>
+                        <td class="align-middle" style="height: 77px !important;">{{rejectedDrawback.total |number:'1.0-0'}}</td>
+                        <td class="align-middle" style="height: 77px !important;">{{rejectedDrawback.transaction.timestamp | date:'medium'}}</td>
+
+
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+            <div class="paginator m-3">
+                <button mat-raised-button class="cancel-button mr-2" (click)="pagination(-1)">Anterior</button>
+                <button mat-raised-button (click)="pagination(1)" class="save-button ml-2 ">Siguiente</button>
+
+            </div>
+        </mat-tab>
+        <mat-tab label="Pendientes ({{pendingdrawBacks.length}})">
+            <table class="table table-hover table-responsive">
+                <thead>
+                    <tr class="text-center">
+                        <th class="align-middle">PÁGINA: {{pageNumber}} </th>
+                        <th class="align-middle my-auto">ID</th>
+                        <th class="align-middle">NOMBRE </th>
+                        <th class="align-middle">APELLIDO</th>
+                        <th class="align-middle">TIPO</th>
+                        <th class="align-middle">DETALLES</th>
+                        <th class="align-middle">ESTADO</th>
+                        <th class="align-middle">TOTAL</th>
+                        <th class="align-middle">FECHA</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr *ngFor="let pendingdrawBack of pendingdrawBacks" class="text-center" style="height: 77px !important;">
+                        <td class="align-middle">
+                            <div class="form-checkvtex-center">
+                                <input class="form-check-input text-center" type="checkbox" value="true" id="flexCheckDefault">
+                            </div>
+                        </td>
+                        <td class="align-middle" style="height: 77px !important;">{{pendingdrawBack.id}}</td>
+                        <td class="align-middle" style="height: 77px !important;">{{pendingdrawBack.transaction.user.first_name}}</td>
+                        <td class="align-middle" style="height: 77px !important;">{{pendingdrawBack.transaction.user.last_name}}</td>
+                        <td class="align-middle" style="height: 77px !important;">{{getTransactionType(pendingdrawBack.transaction.transaction_type)}}</td>
+
+                        <td class="align-middle" style="height: 77px !important;">{{getDetails(pendingdrawBack.transaction.detail)}}</td>
+                        <td class="align-middle" style="height: 77px !important;">{{getStatus(pendingdrawBack.status) }}</td>
+                        <td class="align-middle" style="height: 77px !important;">{{pendingdrawBack.total |number:'1.0-0'}}</td>
+                        <td class="align-middle" style="height: 77px !important;">{{pendingdrawBack.transaction.timestamp | date:'medium'}}</td>
+
+
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+            <div class="paginator m-3">
+                <button mat-raised-button class="cancel-button mr-2" (click)="pagination(-1)">Anterior</button>
+                <button mat-raised-button (click)="pagination(1)" class="save-button ml-2 ">Siguiente</button>
+
+            </div>
+        </mat-tab>
+        <mat-tab label="Completados ({{completedDrawbacks.length}})">
+            <table class="table table-hover table-responsive">
+                <thead>
+                    <tr class="text-center">
+                        <th class="align-middle">PÁGINA: {{pageNumber}} </th>
+                        <th class="align-middle my-auto">ID</th>
+                        <th class="align-middle">NOMBRE </th>
+                        <th class="align-middle">APELLIDO</th>
+                        <th class="align-middle">TIPO</th>
+                        <th class="align-middle">DETALLES</th>
+                        <th class="align-middle">ESTADO</th>
+                        <th class="align-middle">TOTAL</th>
+                        <th class="align-middle">FECHA</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr *ngFor="let completedDrawback of completedDrawbacks" class="text-center" style="height: 77px !important;">
+                        <td class="align-middle">
+                            <div class="form-checkvtex-center">
+                                <input class="form-check-input text-center" type="checkbox" value="true" id="flexCheckDefault">
+                            </div>
+                        </td>
+                        <td class="align-middle" style="height: 77px !important;">{{completedDrawback.id}}</td>
+                        <td class="align-middle" style="height: 77px !important;">{{completedDrawback.transaction.user.first_name}}</td>
+                        <td class="align-middle" style="height: 77px !important;">{{completedDrawback.transaction.user.last_name}}</td>
+                        <td class="align-middle" style="height: 77px !important;">{{getTransactionType(completedDrawback.transaction.transaction_type)}}</td>
+
+                        <td class="align-middle" style="height: 77px !important;">{{getDetails(completedDrawback.transaction.detail)}}</td>
+                        <td class="align-middle" style="height: 77px !important;">{{getStatus(completedDrawback.status) }}</td>
+                        <td class="align-middle" style="height: 77px !important;">{{completedDrawback.total |number:'1.0-0'}}</td>
+                        <td class="align-middle" style="height: 77px !important;">{{completedDrawback.transaction.timestamp | date:'medium'}}</td>
+
+
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+            <div class="paginator m-3">
+                <button mat-raised-button class="cancel-button mr-2" (click)="pagination(-1)">Anterior</button>
+                <button mat-raised-button (click)="pagination(1)" class="save-button ml-2 ">Siguiente</button>
+
+            </div>
+        </mat-tab>
+    </mat-tab-group>
+</ng-container>

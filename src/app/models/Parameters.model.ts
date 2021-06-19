@@ -16,6 +16,7 @@ export class Parameters {
       public  min_service_value: string,
       public  service_inc_dec: number,
       public  min_drawback_value: string,
+      public max_debt_value: string,
       public  service_life_time: number,
       public  offer_life_time: number,
       public  refer_code_reward: string,
@@ -29,7 +30,8 @@ export class Parameters {
       public  help_url: string, 
       public  reward_url: string, 
       public  about_url: string, 
-      
+      public  drawback_url: string, 
+      public drawback_value: string,
       public  country:country     ){}
 }
 export class ChargeParameters {

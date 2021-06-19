@@ -8,6 +8,7 @@ import { AuthModule } from './auth/auth.module';
 import { pagesModule } from './pages/pages.module';
 import { NotPageFoundComponent } from './not-page-found/not-page-found.component';
 import { ComponentsModule } from './components/components.module';
+import { CurrencyPipe } from '@angular/common';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +25,7 @@ import { ComponentsModule } from './components/components.module';
     ComponentsModule,
   
   ],
-  providers: [],
+  providers:[CurrencyPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

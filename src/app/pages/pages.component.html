@@ -2,8 +2,8 @@
     <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" *ngIf="isHandset$ | async">
   <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
 </button>
-    <a class="navbar-brand " style="margin-left: 15px;" href="#">
-        <img src="../../../assets/logo.png" alt="" width="130px" height="41px">
+    <a class="navbar-brand " style="margin-left: 15px;" routerLink="/Pages">
+        <img src="../../assets/logo.png" alt="" width="130px" height="41px">
     </a>
     <ul class="nav ">
         <li class="nav-item">
@@ -33,6 +33,7 @@
             <a class="nav-link text-start mb-1 " [routerLink]="['/Pages/']" routerLinkActive="active" mat-list-item>Usuarios</a>
             <a class="nav-link text-start" [routerLink]="['/Pages/Transactions']" routerLinkActive="active" mat-list-item>Transacciones</a>
             <a class="nav-link text-start" [routerLink]="['/Pages/DeliveryMan']" routerLinkActive="active" mat-list-item>Repartidores</a>
+            <a class="nav-link text-start" [routerLink]="['/Pages/Drawbacks']" routerLinkActive="active" mat-list-item>Desembolsos</a>
             <a class="nav-link text-start" [routerLink]="['/Pages/activeService']" routerLinkActive="active" mat-list-item>Servicios activos</a>
             <a class="nav-link text-start" [routerLink]="['/Pages/Parameters']" routerLinkActive="active" mat-list-item>Parametros</a>
             <a class="nav-link text-start" [routerLink]="['/Pages/Indicators']" routerLinkActive="active" mat-list-item>Indicadores</a>

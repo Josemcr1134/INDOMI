@@ -18,18 +18,18 @@ import { FrequentQuestionsComponent } from '../components/frequent-questions/fre
 import { PromoCodesComponent } from '../components/promo-codes/promo-codes.component';
 import { ReferySystemComponent } from '../components/refery-system/refery-system.component';
 import { IndicatorsComponent } from './indicators/indicators.component';
+import { DrawbacksComponent } from './drawbacks/drawbacks.component';
 
 const routes: Routes = [
     { path: 'Pages',
      component: PagesComponent,
-   /*  canActivate:[GuardsService], */
       children:[
          {path: '', component: UsersComponent, /*  canActivate:[GuardsService], */ },
          {path: 'Transactions', component: TransactionsComponent, /*  canActivate:[GuardsService], */ },
          {path: 'DeliveryMan', component: DeliveryManComponent, /*  canActivate:[GuardsService], */  },
          {path: 'DeliveryManDataBase/:id', component: DeliveryManDataBaseComponent, /*  canActivate:[GuardsService], */  },
          {path: 'activeService', component: ActiveServiceComponent,/*  canActivate:[GuardsService], */  },
-         {path: 'activeService', component: ActiveServiceComponent,/*  canActivate:[GuardsService], */  },
+         {path: 'Drawbacks', component: DrawbacksComponent,/*  canActivate:[GuardsService], */  },
          {path: 'Parameters', component: ParametersComponent,/*  canActivate:[GuardsService], */  },
          {path: 'Indicators', component: IndicatorsComponent,/*  canActivate:[GuardsService], */  },
          {path: 'Help', component: HelpComponent, /*  canActivate:[GuardsService], */  },
@@ -40,7 +40,6 @@ const routes: Routes = [
          {path: 'ReferSystems', component: ReferySystemComponent ,/*  canActivate:[GuardsService], */},
          {path: 'PromoCodes', component: PromoCodesComponent ,/*  canActivate:[GuardsService], */},
          {path: 'edit', component: EditUsersInformationComponent ,/*  canActivate:[GuardsService], */},
-         {path: '**', redirectTo:'', pathMatch:'full', canActivate:[GuardsService] },
 
      ]
      },

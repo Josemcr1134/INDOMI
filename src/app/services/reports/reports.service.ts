@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Reports } from 'src/app/models/Reports.models';
 import { environment } from 'src/environments/environment';
+import { CityService } from '../city/city.service';
 const base_url = environment.base_url;
 
 @Injectable({
@@ -10,7 +11,7 @@ const base_url = environment.base_url;
 })
 export class ReportsService {
   public reports: Reports
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, public cityservice: CityService) { }
   get token(): string{
     return localStorage.getItem('token');
 
@@ -28,14 +29,14 @@ export class ReportsService {
     }
   }
 
-  getReport(data){
-      const url = `${base_url}/report/report/?timestamp_start=${data.timestamp_start}&timestamp_end=${data.timestamp_end}`
+  getReport(timestamp_start, timestamp_end, ){
+      const url = `${base_url}/report/report/?timestamp_start=${timestamp_start}&timestamp_end=${timestamp_end}${this.cityservice.getSelectedCityFilter()}`
+      console.log(url)
 
          return this.http.get<Reports>(url, this.headers)
                 .pipe(
                   map(
                     (resp:Reports) =>  resp)
-
                   )
   }
 }

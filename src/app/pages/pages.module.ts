@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, CurrencyPipe } from '@angular/common';
 
 import { RouterModule } from '@angular/router';
 
@@ -40,6 +40,7 @@ import { DeliveryManDataBaseComponent } from './delivery-man-data-base/delivery-
 import { AddPromCodeComponent } from './add-prom-code/add-prom-code.component';
 import { ExpandServicesInfoComponent } from './expand-services-info/expand-services-info.component';
 import { IndicatorsComponent } from './indicators/indicators.component';
+import { DrawbacksComponent } from './drawbacks/drawbacks.component';
 @NgModule({
     declarations: [
       PagesComponent,
@@ -55,6 +56,7 @@ import { IndicatorsComponent } from './indicators/indicators.component';
     AddPromCodeComponent,
     ExpandServicesInfoComponent,
     IndicatorsComponent,
+    DrawbacksComponent,
     ],
     imports: [CommonModule,
         RouterModule,
@@ -81,6 +83,7 @@ import { IndicatorsComponent } from './indicators/indicators.component';
         ReactiveFormsModule,
         MatPaginatorModule,
          MatSelectModule,
+         
     ],
     exports: [
       PagesComponent,
@@ -92,6 +95,7 @@ import { IndicatorsComponent } from './indicators/indicators.component';
       HelpComponent,
       
     ],
-    providers: [],
-})
+    providers:[CurrencyPipe]
+
+  })
 export class pagesModule {}

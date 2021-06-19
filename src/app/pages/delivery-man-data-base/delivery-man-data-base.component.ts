@@ -61,7 +61,7 @@ export class DeliveryManDataBaseComponent implements OnInit {
                     this.domiDataForm.controls['email'].setValue(this.domiSeleccionado.email);
                  this.domiDataForm.controls['city'].setValue(this.domiSeleccionado.person.city.name);
 
-                   this.domiDataForm.controls['vehicle_type'].setValue(this.domiSeleccionado.domidata.vehicle_type);
+                   this.domiDataForm.controls['vehicle_type'].setValue(getVehicleType(this.domiSeleccionado.domidata.vehicle_type));
                    this.domiDataForm.controls['vehicle_plate'].setValue(this.domiSeleccionado.domidata.vehicle_plate);
                    this.domiDataForm.controls['soat_expedition_date'].setValue(this.domiSeleccionado.domidata.soat_expedition_date);
                    this.domiDataForm.controls['soat_exp_date'].setValue(this.domiSeleccionado.domidata.soat_exp_date);

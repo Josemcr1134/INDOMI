@@ -5,12 +5,13 @@ import { HttpClient } from '@angular/common/http';
 import { ChargeDomiData, Domi, DomiData } from 'src/app/models/DeliveryMan.model';
 import { TransactionsService } from '../../services/Transactiones/transactions.service';
 import { DeliveryManService } from '../../services/DeliveryMan/delivery-man.service';
-import { DrawBacks, getTransactionsType } from 'src/app/models/DrawBacks.model';
 import { getStatus } from '../../models/DrawBacks.model';
-import { getDetails } from 'src/app/models/transactions.model';
+import { getDetails, getTransactionsType } from 'src/app/models/transactions.model';
 import { BlockedDomi } from '../../models/DeliveryMan.model';
 import Swal from 'sweetalert2';
 import { delay } from 'rxjs/operators';
+import { city } from 'src/app/models/City.models';
+import { CityService } from 'src/app/services/city/city.service';
 
 @Component({
   selector: 'app-delivery-man',
@@ -20,8 +21,7 @@ import { delay } from 'rxjs/operators';
 export class DeliveryManComponent implements OnInit {
    public domis : Domi[] = []
    public domistemp : Domi[] = []
-   public drawBacks: DrawBacks [] = []
-   public drawBacksTemp: DrawBacks [] = []
+  
    public totalDrawBacks: number = 0
    public domi:Domi
 
@@ -35,13 +35,20 @@ export class DeliveryManComponent implements OnInit {
   public cargando : boolean = true
   public pageNumber:number = 1
    public totalServicios:number = 0
-  constructor(private http: HttpClient, private domiService: DeliveryManService) { }
+   public cities: city[]
+
+  constructor(private http: HttpClient, private domiService: DeliveryManService, public cityservice:CityService) { }
 
   ngOnInit(): void {
     this.getDomi()
-    this.getDrowBacks()
     this.getBlockedDomi()
+
   }
+  filter(){
+   this.getDomi()
+    this.getBlockedDomi() 
+  }
+ 
   getDomi(){
     this.cargando = true
     this.domiService.getDomi(true  , false, this.pageNumber)
@@ -64,6 +71,7 @@ export class DeliveryManComponent implements OnInit {
       this.pageNumber -= valor
     }
     this.getDomi()
+    this.getBlockedDomi()
     this.cargando = false
   
   }
@@ -78,27 +86,8 @@ export class DeliveryManComponent implements OnInit {
 
                         }) 
   }
-  getDrowBacks(){
-    this.cargando = true
-
-    this.domiService.getDrawBacks(this.pageNumber)
-              .subscribe(({drawBacks, count}) => {
-                this.drawBacks = drawBacks
-                this.totalDrawBacks = count
-                this.drawBacksTemp = drawBacks
-                this.cargando = false
-
-              })
-  }
-  searchDrawbacks(searchTerm: string){
-    if(searchTerm.length === 0){
-      return this.drawBacks =  this.drawBacksTemp
-    }
-    this.domiService.searchDrawbacks(searchTerm)
-                        .subscribe((drawBacks) => {
-                            this.drawBacks = drawBacks
-                        } )
-  }
+ 
+ 
   BlockDomi(domi:Domi ){
     let data ={
       username:domi.username,
